@@ -1,0 +1,18 @@
+.root{
+    -fx-background-image: url("../images/fondo.png");
+    -fx-background-repeat:no-repeat;
+    -fx-background-position:center;
+    -fx-background-size:100% 100%;
+    
+    -fx-view-order: 3;    
+}
+.cont{
+    -fx-background-color:dark;
+}
+.cuadro{
+    -fx-background-color:black;
+    
+    -fx-view-order: 2;
+    -fx-alignment:CENTER_LEFT;
+    
+}
