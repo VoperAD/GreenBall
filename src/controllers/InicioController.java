@@ -27,7 +27,7 @@ public class InicioController implements Initializable {
     @FXML
     private Button inicioSesionButton;
     @FXML
-    private Button RegistroButton;
+    private Button registroButton;
 
     /**
      * Initializes the controller class.
@@ -37,9 +37,7 @@ public class InicioController implements Initializable {
         try {
             // TODO
             Club club = Club.getInstance();
-        } catch (ClubDAOException ex) {
-            Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (ClubDAOException | IOException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
