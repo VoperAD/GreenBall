@@ -10,13 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafxmlapplication.GreenBallApp;
+import javafxmlapplication.Scenes;
 
 /**
  * FXML Controller class
  *
  * @author Sabin
  */
-public class horarioSinSesionController implements Initializable {
+public class HorarioSinSesionController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -28,7 +29,7 @@ public class horarioSinSesionController implements Initializable {
     
     @FXML
     private void volverAction(ActionEvent event) {
-        GreenBallApp.setRoot("inicio");
+        GreenBallApp.setRoot(Scenes.INICIO);
     }
     
 }

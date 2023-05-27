@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafxmlapplication.GreenBallApp;
+import javafxmlapplication.Scenes;
 
 public class RegistroController implements Initializable {
 
@@ -25,7 +26,7 @@ public class RegistroController implements Initializable {
 
     @FXML
     private void volverAction(ActionEvent event) {
-        GreenBallApp.setRoot("inicio");
+        GreenBallApp.setRoot(Scenes.INICIO);
     }
     
 }
