@@ -1,10 +1,5 @@
 package controllers;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,20 +9,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafxmlapplication.GreenBallApp;
 import model.Club;
 import model.ClubDAOException;
 
-/**
- * FXML Controller class
- *
- * @author Sabin
- */
 public class InicioController implements Initializable {
 
     @FXML
     private Button inicioSesionButton;
     @FXML
-    private Button registroButton;
+    private Button RegistroButton;
+    @FXML
+    private Button horariosButton;
 
     /**
      * Initializes the controller class.
@@ -44,10 +37,17 @@ public class InicioController implements Initializable {
 
     @FXML
     private void InicioSesionAction(ActionEvent event) {
+        GreenBallApp.setRoot("signup");
     }
 
     @FXML
     private void registroAction(ActionEvent event) {
+        GreenBallApp.setRoot("registro");
+    }
+
+    @FXML
+    private void verHorarioAction(ActionEvent event) {
+        GreenBallApp.setRoot("horariosinsesion");
     }
     
 }

@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafxmlapplication.GreenBallApp;
 
 public class UserController implements Initializable {
 
@@ -20,5 +22,8 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
+    @FXML
+    private void cerrarSesionAction(ActionEvent event) {
+        GreenBallApp.setRoot("inicio");
+    }
 }

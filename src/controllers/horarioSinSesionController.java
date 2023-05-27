@@ -9,20 +9,23 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafxmlapplication.GreenBallApp;
 
-public class RegistroController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author Sabin
+ */
+public class horarioSinSesionController implements Initializable {
 
-    @FXML
-    private Button volverButtton;
-
-   
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    }
+    
     @FXML
     private void volverAction(ActionEvent event) {
         GreenBallApp.setRoot("inicio");

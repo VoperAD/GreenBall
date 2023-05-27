@@ -22,6 +22,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="228.0" valignment="CENTER" vgrow="SOMETIMES" />
       <RowConstraints />
       <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints />
    </rowConstraints>
    <children>
       <Pane opacity="0.61" prefHeight="200.0" prefWidth="200.0" styleClass="cuadro" GridPane.rowSpan="5">
@@ -49,7 +50,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: green;" text="Ver Horarios" textFill="WHITE" />
+            <Button fx:id="horariosButton" mnemonicParsing="false" onAction="#verHorarioAction" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: green;" text="Ver Horarios" textFill="WHITE" />
          </children>
       </VBox>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">

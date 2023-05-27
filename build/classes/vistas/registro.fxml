@@ -5,9 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistroController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -35,7 +36,12 @@
       <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Button mnemonicParsing="false" text="Registrarse" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <Label text="Imagen (opcional)" GridPane.rowIndex="6" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+         <children>
+            <Button mnemonicParsing="false" text="Registrarse" />
+            <Button fx:id="volverButtton" mnemonicParsing="false" onAction="#volverAction" text="Volver" />
+         </children>
+      </HBox>
    </children>
 </GridPane>
