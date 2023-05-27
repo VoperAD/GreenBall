@@ -1,6 +1,6 @@
 *.iml
 .idea
 .DS_Store
-nbproject/private
-out
-build
+/nbproject/private
+/out
+/build
