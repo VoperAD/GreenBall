@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafxmlapplication.GreenBallApp;
+import javafxmlapplication.Scenes;
 
 public class LoginController implements Initializable {
 
@@ -16,7 +17,7 @@ public class LoginController implements Initializable {
     }
     @FXML
     private void volverAction(ActionEvent event) {
-        GreenBallApp.setRoot("inicio");
+        GreenBallApp.setRoot(Scenes.INICIO);
     }
 
 }

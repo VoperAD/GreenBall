@@ -32,9 +32,13 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.Background;
 import javafxmlapplication.GreenBallApp;
+<<<<<<< HEAD
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
+=======
+import javafxmlapplication.Scenes;
+>>>>>>> 16ae774834f0f58ddc0a5b3b14b8531abe3652fb
 
 public class RegistroController implements Initializable {
 
@@ -237,7 +241,7 @@ public class RegistroController implements Initializable {
 
     @FXML
     private void volverAction(ActionEvent event) {
-        GreenBallApp.setRoot("inicio");
+        GreenBallApp.setRoot(Scenes.INICIO);
     }
 
     @FXML

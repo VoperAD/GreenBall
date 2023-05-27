@@ -30,7 +30,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>
       </Pane>
-      <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#InicioSesionAction" prefHeight="70.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: white;" text="Iniciar sesión" textFill="WHITE" GridPane.halignment="CENTER">
+      <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#inicioSesionAction" prefHeight="70.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: white;" text="Iniciar sesión" textFill="WHITE" GridPane.halignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>

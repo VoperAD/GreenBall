@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafxmlapplication.GreenBallApp;
+import javafxmlapplication.Scenes;
 import model.Club;
 import model.ClubDAOException;
 
@@ -36,18 +37,18 @@ public class InicioController implements Initializable {
     }    
 
     @FXML
-    private void InicioSesionAction(ActionEvent event) {
-        GreenBallApp.setRoot("signup");
+    private void inicioSesionAction(ActionEvent event) {
+        GreenBallApp.setRoot(Scenes.LOGIN);
     }
 
     @FXML
     private void registroAction(ActionEvent event) {
-        GreenBallApp.setRoot("registro");
+        GreenBallApp.setRoot(Scenes.REGISTRO);
     }
 
     @FXML
     private void verHorarioAction(ActionEvent event) {
-        GreenBallApp.setRoot("horariosinsesion");
+        GreenBallApp.setRoot(Scenes.HORARIOS_SIN_SESION);
     }
     
 }
