@@ -4,39 +4,27 @@
  */
 package controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
-import javafx.scene.layout.Background;
 import javafxmlapplication.GreenBallApp;
+import javafxmlapplication.Scenes;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
 
-import javafxmlapplication.Scenes;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RegistroController implements Initializable {
 
@@ -58,7 +46,6 @@ public class RegistroController implements Initializable {
     private Button registroButton;
     @FXML
     private PasswordField contText;
-     private Club club;
     @FXML
     private Label ccvErrLabel;
     @FXML
@@ -87,14 +74,10 @@ public class RegistroController implements Initializable {
     private final SimpleBooleanProperty cvvProperty = new SimpleBooleanProperty(true);
     private final SimpleBooleanProperty okProperty = new SimpleBooleanProperty(true);
 
+    private Club club = GreenBallApp.getClub();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        try {
-            club = Club.getInstance();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
 
         registroButton.disableProperty().bind(Bindings.not(Bindings.createBooleanBinding(() ->
                     nombreProperty.get() && apellidosProperty.get() && telefonoProperty.get() && nicknameProperty.get() &&
@@ -330,34 +313,37 @@ public class RegistroController implements Initializable {
             
             vaciarCampos();
             
-        } catch (ClubDAOException ex) {
+        } catch (ClubDAOException | IOException ex) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (Exception ex){
+        } catch (Exception ex){
             System.err.println("Error: " + ex);
         }
     }
+
     private void vaciarCampos(){
-        nombreText.setText("");
-        apellidosText.setText("");
-        telText.setText("");
-        nickText.setText("");
-        contText.setText("");
-        tarjetaText.setText("");
-        ccvText.setText("");
+        for (Field field : this.getClass().getDeclaredFields()) {
+            try {
+                Object o = field.get(this);
+                if (!(o instanceof TextField)) continue;
+                ((TextField) o).clear();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+//        nombreText.clear();
+//        apellidosText.setText("");
+//        telText.setText("");
+//        nickText.setText("");
+//        contText.setText("");
+//        tarjetaText.setText("");
+//        ccvText.setText("");
     }
+
     @FXML
     private void revisarCcv(InputMethodEvent event) {
         if(ccvText.getText().length()!=3 ){
                 ccvText.setStyle("-fx-text-fill: red");
             }
-    }
-    
-    public class NumberLengthException extends RuntimeException{
-        public NumberLengthException(String errMsg){
-            super(errMsg);
-        }
     }
     
 }

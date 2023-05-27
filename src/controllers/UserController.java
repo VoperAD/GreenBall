@@ -23,6 +23,7 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
     @FXML
     private void cerrarSesionAction(ActionEvent event) {
         GreenBallApp.setRoot(Scenes.INICIO);

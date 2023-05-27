@@ -1,5 +1,6 @@
 package javafxmlapplication;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Club;
+import model.ClubDAOException;
 
 public class GreenBallApp extends Application {
 
@@ -15,6 +18,7 @@ public class GreenBallApp extends Application {
     public static final Map<Scenes, ?> CONTROLLERS = new HashMap<>();
 
     private static Scene mainScene;
+    private static Club club;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -43,12 +47,20 @@ public class GreenBallApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        
     }
 
     public static void setRoot(Scenes newScene) {
         Parent parent = ROOTS.get(newScene);
         mainScene.setRoot(parent);
+    }
+
+    public static Club getClub() {
+        try {
+            if (club == null) club = Club.getInstance();
+        } catch (ClubDAOException | IOException e) {
+            e.printStackTrace();
+        }
+        return club;
     }
 
 }

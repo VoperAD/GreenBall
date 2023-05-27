@@ -41,7 +41,7 @@
                   <Label text="Nickname:" GridPane.rowIndex="1" />
                   <Label text="Contraseña:" GridPane.rowIndex="2" />
                   <TextField fx:id="nickText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="LOGIN" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onLogin" text="LOGIN" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
