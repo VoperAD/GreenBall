@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistroController">
@@ -22,25 +26,77 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="Nombre" />
       <Label text="Apellidos" GridPane.rowIndex="1" />
       <Label text="Teléfono" GridPane.rowIndex="2" />
       <Label text="Nickname" GridPane.rowIndex="3" />
-      <Label text="Nº Tarjeta" GridPane.rowIndex="4" />
-      <Label text="Código de seguridad" GridPane.rowIndex="5" />
-      <TextField GridPane.columnIndex="1" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Label text="Imagen (opcional)" GridPane.rowIndex="6" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <Label text="Nº Tarjeta" GridPane.rowIndex="5" />
+      <Label text="Código de seguridad (Opcional" GridPane.rowIndex="6" />
+      <Label text="Imagen (opcional)" GridPane.rowIndex="7" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
          <children>
-            <Button mnemonicParsing="false" text="Registrarse" />
+            <Button fx:id="registroButton" mnemonicParsing="false" onAction="#registrarAction" text="Registrarse" />
             <Button fx:id="volverButtton" mnemonicParsing="false" onAction="#volverAction" text="Volver" />
+         </children>
+      </HBox>
+      <Label text="Contraseña" GridPane.rowIndex="4" />
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <TextField fx:id="ccvText" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#revisarCcv" prefHeight="25.0" prefWidth="60.0" promptText="3 dígitos" />
+            <Label fx:id="ccvErrLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="189.0" textAlignment="RIGHT" textFill="RED">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <children>
+            <TextField fx:id="tarjetaText" />
+            <Label fx:id="tarjetaErrLabel" textFill="RED" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <CheckBox fx:id="visibleCheck" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Visible">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </CheckBox>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <PasswordField fx:id="contText" layoutX="12.0" layoutY="10.0" />
+                  <TextField fx:id="contVisibleText" layoutX="12.0" layoutY="10.0" />
+               </children>
+            </Pane>
+            <Label fx:id="contErrLabel" textFill="RED" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <TextField fx:id="nickText" />
+            <Label fx:id="nickErrLabel" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <TextField fx:id="apellidosText" />
+            <Label fx:id="apellidosErrLabel" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <TextField fx:id="nombreText" />
+            <Label fx:id="nombreErrLabel" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <TextField fx:id="telText" />
+            <Label fx:id="telErrLabel" />
          </children>
       </HBox>
    </children>
