@@ -85,6 +85,7 @@ public class RegistroController implements Initializable {
     private final SimpleBooleanProperty passwordProperty = new SimpleBooleanProperty(false);
     private final SimpleBooleanProperty tarjetaProperty = new SimpleBooleanProperty(true);
     private final SimpleBooleanProperty cvvProperty = new SimpleBooleanProperty(true);
+    private final SimpleBooleanProperty okProperty = new SimpleBooleanProperty(true);
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,8 +98,8 @@ public class RegistroController implements Initializable {
 
         registroButton.disableProperty().bind(Bindings.not(Bindings.createBooleanBinding(() ->
                     nombreProperty.get() && apellidosProperty.get() && telefonoProperty.get() && nicknameProperty.get() &&
-                            passwordProperty.get() && tarjetaProperty.get(),
-                nombreProperty, apellidosProperty, telefonoProperty, nicknameProperty, passwordProperty, tarjetaProperty
+                            passwordProperty.get() && okProperty.get(),
+                nombreProperty, apellidosProperty, telefonoProperty, nicknameProperty, passwordProperty, okProperty
         )));
         
         List<Member> miembros = club.getMembers();
@@ -106,10 +107,8 @@ public class RegistroController implements Initializable {
         miembros.forEach(member -> nicknames.add(member.getNickName()));
 
         nombreText.textProperty().addListener((a,b,c) -> {
-            try{
+            if(nombreText.getText().length()>0){
                 nombreText.setText(String.valueOf(nombreText.getText().charAt(0)).toUpperCase()+nombreText.getText().substring(1));
-            } catch(Exception e){
-                e.printStackTrace();
             }
 
             boolean ok = true;
@@ -128,10 +127,8 @@ public class RegistroController implements Initializable {
         });
         
         apellidosText.textProperty().addListener((a,b,c) -> {
-            try{
+            if(apellidosText.getText().length()>0){
                 apellidosText.setText(String.valueOf(apellidosText.getText().charAt(0)).toUpperCase()+apellidosText.getText().substring(1));
-            } catch(Exception e){
-                e.printStackTrace();
             }
 
             boolean ok = true;
@@ -219,11 +216,6 @@ public class RegistroController implements Initializable {
             boolean ok = true;
             String text = tarjetaText.getText();
 
-            if (c.isEmpty()) {
-                tarjetaProperty.set(true);
-                return;
-            }
-
             if(text.length()!=16){
                 tarjetaErrLabel.setText("El número debe contener 16 digitos");
                 ok = false;
@@ -237,21 +229,32 @@ public class RegistroController implements Initializable {
             if (ok) {
                 tarjetaText.setStyle("-fx-text-fill: black");
                 tarjetaErrLabel.setText("");
-            } else {
+                ccvText.setDisable(false);
+                tarjetaProperty.set(true);
+            } else if(text.isEmpty()){
+                tarjetaText.setStyle("-fx-text-fill: black");
+                tarjetaErrLabel.setText("");
+                okProperty.set(true);
+                tarjetaProperty.set(false);
+                ccvText.setDisable(true);
+                cvvProperty.set(false);
+                ccvText.setText("");
+                ccvText.setStyle("-fx-text-fill: black");
+                ccvErrLabel.setText("");
+            }else{
                 tarjetaText.setStyle("-fx-text-fill: red");
+                ccvText.setDisable(true);
+                cvvProperty.set(false);
+                tarjetaProperty.set(false);
+                okProperty.set(false);
+                ccvText.setText("");
+                ccvText.setStyle("-fx-text-fill: black");
+                ccvErrLabel.setText("");
             }
-
-            tarjetaProperty.set(ok);
-            ccvText.setDisable(!ok);
         });
         
         ccvText.textProperty().addListener((a,b,c) -> {
             boolean ok = true;
-
-            if (c.isEmpty() && tarjetaText.getText().isEmpty()) {
-                tarjetaProperty.set(true);
-                return;
-            }
 
             if (ccvText.getText().length()!=3) {
                 ccvErrLabel.setText("El código debe tener 3 números");
@@ -261,14 +264,24 @@ public class RegistroController implements Initializable {
                 ccvErrLabel.setText("El código debe ser numérico");
                 ok = false;
             }
-            if(ok){
+            if(ok && tarjetaProperty.get()){
                 ccvText.setStyle("-fx-text-fill: black");
                 ccvErrLabel.setText("");
-            } else {
+                cvvProperty.set(true);
+                okProperty.set(true);
+            }else if (ok){
+                ccvText.setStyle("-fx-text-fill: black");
+                ccvErrLabel.setText("");
+                cvvProperty.set(true);
+                okProperty.set(false);
+            } else if (ccvText.getText().isEmpty() && tarjetaText.getText().isEmpty()){
+                okProperty.set(true);
+                cvvProperty.set(false);
+            }else{
                 ccvText.setStyle("-fx-text-fill: red");
+                okProperty.set(false);
+                cvvProperty.set(false);
             }
-
-            tarjetaProperty.set(ok);
         });
 
         ccvText.setDisable(true);
@@ -284,19 +297,16 @@ public class RegistroController implements Initializable {
     @FXML
     private void volverAction(ActionEvent event) {
         GreenBallApp.setRoot(Scenes.INICIO);
+        vaciarCampos();
     }
 
     @FXML
     private void registrarAction(ActionEvent event) {
-        /*try {
+        try{
             club = Club.getInstance();
             
             String name, surname,telephon, login, password, creditCard, imagepath;
             int svc;
-            
-            if(ccvText.getText().length()!=3 ){
-                throw new NumberLengthException("Longitud erronea");
-            }
                 
             name = nombreText.getText();
             surname = apellidosText.getText();
@@ -304,24 +314,39 @@ public class RegistroController implements Initializable {
             login = nickText.getText();
             password = contText.getText();
             creditCard = tarjetaText.getText();
-            svc = Integer.parseInt(ccvText.getText());
-            
+            if(!ccvText.getText().isEmpty()){
+                svc = Integer.parseInt(ccvText.getText());
+            }else{
+                svc = 0;
+            }
             
             
             Member result = club.registerMember(name, surname, telephon, login, password, creditCard, svc, null);
             
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("GreenBall Informa");
+            dialog.setHeaderText("Usuario creado correctamente");
+            dialog.showAndWait();
+            
+            vaciarCampos();
             
         } catch (ClubDAOException ex) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (NumberLengthException ex){
-            System.err.println("Error de numero: " + ex);
         }catch (Exception ex){
             System.err.println("Error: " + ex);
-        }*/
+        }
     }
-
+    private void vaciarCampos(){
+        nombreText.setText("");
+        apellidosText.setText("");
+        telText.setText("");
+        nickText.setText("");
+        contText.setText("");
+        tarjetaText.setText("");
+        ccvText.setText("");
+    }
     @FXML
     private void revisarCcv(InputMethodEvent event) {
         if(ccvText.getText().length()!=3 ){
@@ -334,4 +359,5 @@ public class RegistroController implements Initializable {
             super(errMsg);
         }
     }
+    
 }
