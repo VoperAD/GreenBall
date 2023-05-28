@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controllers;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -29,7 +24,7 @@ import model.Court;
  *
  * @author Fran
  */
-public class MainViewController implements Initializable {
+public class HorarioSesionController implements Initializable {
 
     @FXML
     private DatePicker selectedDate;
@@ -129,13 +124,8 @@ public class MainViewController implements Initializable {
     }    
 
     @FXML
-    private void iniciarSesion(ActionEvent event) {
-        GreenBallApp.setRoot(Scenes.LOGIN);
-    }
-
-    @FXML
     private void volverInicio(ActionEvent event) {
-        GreenBallApp.setRoot(Scenes.LOGIN);
+        GreenBallApp.setRoot(Scenes.USER);
     }
     
 }

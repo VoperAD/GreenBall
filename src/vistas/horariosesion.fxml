@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HorarioSesionController">
    <top>
       <GridPane BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -29,15 +29,6 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="900.0" GridPane.columnIndex="2">
                <children>
                   <Button mnemonicParsing="false" onAction="#volverInicio" text="Volver" />
-                  <Button contentDisplay="RIGHT" graphicTextGap="10.0" maxHeight="100.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #ffffff;" text="Iniciar Sesión">
-                     <graphic>
-                        <ImageView fitHeight="80.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/userIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                </children>
                <padding>
                   <Insets bottom="5.0" right="10.0" top="5.0" />
@@ -58,7 +49,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0">
          <children>
-            <DatePicker fx:id="selectedDate" disable="true">
+            <DatePicker fx:id="selectedDate">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

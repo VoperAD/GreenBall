@@ -24,8 +24,12 @@ public class UserController implements Initializable {
 
     }
 
-    @FXML
     private void cerrarSesionAction(ActionEvent event) {
         GreenBallApp.setRoot(Scenes.INICIO);
+    }
+
+    @FXML
+    private void reservar(ActionEvent event) {
+        GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION);
     }
 }
