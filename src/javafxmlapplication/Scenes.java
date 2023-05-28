@@ -6,7 +6,7 @@ public enum Scenes {
     LOGIN("login"),
     REGISTRO("registro"),
     USER("user"),
-    HORARIOS_SIN_SESION("horariosinsesion");
+    HORARIOS_SIN_SESION("MainView");
 
     private final String filePath;
 
