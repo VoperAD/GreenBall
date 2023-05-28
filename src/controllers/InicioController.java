@@ -19,13 +19,10 @@ public class InicioController implements Initializable {
     @FXML
     private Button inicioSesionButton;
     @FXML
-    private Button RegistroButton;
+    private Button registroButton;
     @FXML
     private Button horariosButton;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {

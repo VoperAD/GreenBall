@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controllers;
 
 import java.net.URL;
@@ -72,59 +68,54 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ArrayList<String> hours = new ArrayList<String>();
-        hours.add("09:00");hours.add("10:00");hours.add("11:00");
-        hours.add("12:00");hours.add("13:00");hours.add("14:00");
-        hours.add("15:00");hours.add("16:00");hours.add("17:00");
-        hours.add("18:00");hours.add("19:00");hours.add("20:00");
-        hours.add("21:00");hours.add("22:00");
-        
-        datos = FXCollections.observableArrayList(hours);
-        timeTable.setItems(datos);
-        
-        //No modificable, solo se muestra el horario de hoy
-        selectedDate.setValue(LocalDate.now());
-        
-        //Creación de arrays auxiliares
-        pistasLabel = new ArrayList<>();
-        pistasLabel.add(lab1);pistasLabel.add(lab2);pistasLabel.add(lab3);
-        pistasLabel.add(lab4);pistasLabel.add(lab5);pistasLabel.add(lab6);
-        
-        pistasLabelRes = new ArrayList<>();
-        pistasLabelRes.add(lab1res);pistasLabelRes.add(lab2res);pistasLabelRes.add(lab3res);
-        pistasLabelRes.add(lab4res);pistasLabelRes.add(lab5res);pistasLabelRes.add(lab6res);
-        
-        try{
-            Club club = Club.getInstance();
-            ArrayList<Booking> books = club.getBookings();
-            
-            pistas = club.getCourts(); 
-            for(int i=0;i<pistas.size();i++){
-                pistasLabel.get(i).setText(pistas.get(i).getName());
-            }
-            
-            nombres = new ArrayList<>();
-            pistasLabel.forEach(a -> nombres.add(a.getText()));
-            
-            //Aqui, el listener que actualiza las pistas en función de la hora elegida, al final
-            //de initialize se seleccionan las 09:00
-            timeTable.getSelectionModel().selectedItemProperty().addListener((a) -> {
-                pistasLabelRes.forEach(b -> b.setText(""));
-                for(int i = 0; i < books.size();i++){
-                    if(books.get(i).getMadeForDay().equals(LocalDate.now()) && books.get(i).getFromTime().equals(
-                       LocalTime.of(Integer.parseInt(timeTable.getSelectionModel().getSelectedItem().substring(0, 2)), 0))){
-                       int pistaIndex = nombres.indexOf(books.get(i).getCourt().getName());
-                       pistasLabelRes.get(pistaIndex).setText("Reservada por: "+books.get(i).getMember().getNickName());
-                       //para compropar si están bien, falta añadir efecto de ocupado
-                       //Booking c = books.get(i);
-                       //System.out.println(c.getCourt().getName() + " " +c.getFromTime()+" "+c.getMadeForDay()+" "+c.getMember().getNickName());
-                    }
-                }
-            });
-            
-        }catch(Exception ex){
-            System.err.println("error: "+ ex);
+    ArrayList<String> hours = new ArrayList<String>();
+    hours.add("09:00");hours.add("10:00");hours.add("11:00");
+    hours.add("12:00");hours.add("13:00");hours.add("14:00");
+    hours.add("15:00");hours.add("16:00");hours.add("17:00");
+    hours.add("18:00");hours.add("19:00");hours.add("20:00");
+    hours.add("21:00");hours.add("22:00");
+
+    datos = FXCollections.observableArrayList(hours);
+    timeTable.setItems(datos);
+
+    //No modificable, solo se muestra el horario de hoy
+    selectedDate.setValue(LocalDate.now());
+
+    //Creación de arrays auxiliares
+    pistasLabel = new ArrayList<>();
+    pistasLabel.add(lab1);pistasLabel.add(lab2);pistasLabel.add(lab3);
+    pistasLabel.add(lab4);pistasLabel.add(lab5);pistasLabel.add(lab6);
+
+    pistasLabelRes = new ArrayList<>();
+    pistasLabelRes.add(lab1res);pistasLabelRes.add(lab2res);pistasLabelRes.add(lab3res);
+    pistasLabelRes.add(lab4res);pistasLabelRes.add(lab5res);pistasLabelRes.add(lab6res);
+
+    Club club = GreenBallApp.getClub();
+    ArrayList<Booking> books = club.getBookings();
+
+        pistas = club.getCourts(); 
+        for(int i=0;i<pistas.size();i++){
+            pistasLabel.get(i).setText(pistas.get(i).getName());
         }
+
+        nombres = new ArrayList<>();
+        pistasLabel.forEach(a -> nombres.add(a.getText()));
+
+        //Aqui, el listener que actualiza las pistas en función de la hora elegida, al final
+        //de initialize se seleccionan las 09:00
+        timeTable.getSelectionModel().selectedItemProperty().addListener((a) -> {
+            pistasLabelRes.forEach(b -> b.setText(""));
+            for(int i = 0; i < books.size();i++){
+                if(books.get(i).getMadeForDay().equals(LocalDate.now()) && books.get(i).getFromTime().equals(
+                   LocalTime.of(Integer.parseInt(timeTable.getSelectionModel().getSelectedItem().substring(0, 2)), 0))){
+                   int pistaIndex = nombres.indexOf(books.get(i).getCourt().getName());
+                   pistasLabelRes.get(pistaIndex).setText("Reservada por: "+books.get(i).getMember().getNickName());
+                   //para compropar si están bien, falta añadir efecto de ocupado
+                   //Booking c = books.get(i);
+                   //System.out.println(c.getCourt().getName() + " " +c.getFromTime()+" "+c.getMadeForDay()+" "+c.getMember().getNickName());
+                }
+            }
+        });
         timeTable.getSelectionModel().select(0);
     }    
 
@@ -135,7 +126,7 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void volverInicio(ActionEvent event) {
-        GreenBallApp.setRoot(Scenes.LOGIN);
+        GreenBallApp.setRoot(Scenes.INICIO);
     }
     
 }

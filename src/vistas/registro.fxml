@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistroController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -61,18 +62,18 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <children>
-            <CheckBox fx:id="visibleCheck" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Visible">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </CheckBox>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
                <children>
-                  <PasswordField fx:id="contText" layoutX="12.0" layoutY="10.0" />
-                  <TextField fx:id="contVisibleText" layoutX="12.0" layoutY="10.0" />
+                  <PasswordField fx:id="contText" layoutX="1.0" />
+                  <TextField fx:id="contVisibleText" alignment="CENTER" layoutX="1.0" />
                </children>
             </Pane>
             <Label fx:id="contErrLabel" textFill="RED" />
+            <CheckBox fx:id="visibleCheck" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Visible">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </CheckBox>
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
