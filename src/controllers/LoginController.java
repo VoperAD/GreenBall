@@ -1,13 +1,9 @@
 package controllers;
 
 import javafx.beans.binding.Bindings;
-import javafx.fxml.Initializable;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -15,9 +11,11 @@ import javafx.scene.control.TextField;
 import javafxmlapplication.GreenBallApp;
 import javafxmlapplication.Scenes;
 import model.Club;
-import model.ClubDAOException;
 import model.Member;
 import utils.AlertUtils;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
@@ -61,14 +59,14 @@ public class LoginController implements Initializable {
         nickText.clear();
 
         AlertUtils.createAlert(Alert.AlertType.INFORMATION, "Sesión iniciada con éxito!", "");
+        GreenBallApp.setUser(memberByCredentials);
         GreenBallApp.setRoot(Scenes.USER);
     }
 
     @FXML
     private void volverAction(ActionEvent event) {
-        nickText.clear();
-        passwordField.clear();
         GreenBallApp.setRoot(Scenes.INICIO);
+        GreenBallApp.reloadScene(Scenes.LOGIN);
     }
 
 }

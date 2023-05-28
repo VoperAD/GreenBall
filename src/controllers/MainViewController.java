@@ -94,37 +94,29 @@ public class MainViewController implements Initializable {
         pistasLabelRes.add(lab1res);pistasLabelRes.add(lab2res);pistasLabelRes.add(lab3res);
         pistasLabelRes.add(lab4res);pistasLabelRes.add(lab5res);pistasLabelRes.add(lab6res);
         
-        try{
-            Club club = Club.getInstance();
-            ArrayList<Booking> books = club.getBookings();
+        Club club = GreenBallApp.getClub();
+        ArrayList<Booking> books = club.getBookings();
             
-            pistas = club.getCourts(); 
-            for(int i=0;i<pistas.size();i++){
-                pistasLabel.get(i).setText(pistas.get(i).getName());
-            }
-            
-            nombres = new ArrayList<>();
-            pistasLabel.forEach(a -> nombres.add(a.getText()));
-            
-            //Aqui, el listener que actualiza las pistas en función de la hora elegida, al final
-            //de initialize se seleccionan las 09:00
-            timeTable.getSelectionModel().selectedItemProperty().addListener((a) -> {
-                
-                for(int i = 0; i < books.size();i++){
-                    if(books.get(i).getMadeForDay().equals(LocalDate.now()) && books.get(i).getFromTime().equals(
-                       LocalTime.of(Integer.parseInt(timeTable.getSelectionModel().getSelectedItem().substring(0, 2)), 0))){
-                       int pistaIndex = nombres.indexOf(books.get(i).getCourt().getName());
-                       pistasLabelRes.get(pistaIndex).setText("Reservada por: "+books.get(i).getMember().getNickName());
-                       //para compropar si están bien, falta añadir efecto de ocupado
-                       //Booking c = books.get(i);
-                       //System.out.println(c.getCourt().getName() + " " +c.getFromTime()+" "+c.getMadeForDay()+" "+c.getMember().getNickName());
-                    }
-                }
-            });
-            
-        }catch(Exception ex){
-            System.err.println("error: "+ ex);
+        pistas = club.getCourts();
+        for (int i = 0; i < pistas.size(); i++) {
+            pistasLabel.get(i).setText(pistas.get(i).getName());
         }
+
+        nombres = new ArrayList<>();
+        pistasLabel.forEach(a -> nombres.add(a.getText()));
+
+        //Aqui, el listener que actualiza las pistas en función de la hora elegida, al final
+        //de initialize se seleccionan las 09:00
+        timeTable.getSelectionModel().selectedItemProperty().addListener((a) -> {
+            pistasLabelRes.forEach(b -> b.setText(""));
+            for (int i = 0; i < books.size(); i++) {
+                if (books.get(i).getMadeForDay().equals(LocalDate.now()) && books.get(i).getFromTime().equals(
+                        LocalTime.of(Integer.parseInt(timeTable.getSelectionModel().getSelectedItem().substring(0, 2)), 0))) {
+                    int pistaIndex = nombres.indexOf(books.get(i).getCourt().getName());
+                    pistasLabelRes.get(pistaIndex).setText("Reservada por: " + books.get(i).getMember().getNickName());
+                }
+            }
+        });
         timeTable.getSelectionModel().select(0);
     }    
 
