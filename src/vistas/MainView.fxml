@@ -16,9 +16,9 @@
 
 <BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <top>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane styleClass="grid_menu_bar" stylesheets="@../estilos/MainViewcss.css" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
          </columnConstraints>
@@ -28,10 +28,9 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="900.0" GridPane.columnIndex="2">
                <children>
-                  <Button mnemonicParsing="false" onAction="#volverInicio" text="Volver" />
-                  <Button contentDisplay="RIGHT" graphicTextGap="10.0" maxHeight="100.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #ffffff;" text="Iniciar Sesión">
+                  <Button contentDisplay="RIGHT" graphicTextGap="10.0" maxHeight="100.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #ededed;" text="Iniciar Sesión">
                      <graphic>
-                        <ImageView fitHeight="80.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/userIcon.png" />
                            </image>
@@ -43,20 +42,30 @@
                   <Insets bottom="5.0" right="10.0" top="5.0" />
                </padding>
             </HBox>
-            <Label style="-fx-font-size: 36; -fx-font-weight: bold;" text="Pistas" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/greenball%20título%20verde%201.png" />
-               </image>
+            <Label style="-fx-font-size: 36; -fx-font-weight: bold;" text="Pistas" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin></Label>
+            <HBox alignment="CENTER_LEFT" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
-            </ImageView>
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/greenball%20título%20verde%201.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0">
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0" stylesheets="@../estilos/MainViewcss.css">
          <children>
             <DatePicker fx:id="selectedDate" disable="true">
                <VBox.margin>
@@ -202,6 +211,18 @@
                   <Label fx:id="lab6res" />
                </children>
             </VBox>
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#volverInicio" style="-fx-background-color: #ffffff;" text="Volver" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/backIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="20.0" right="15.0" />
+               </GridPane.margin>
+            </Button>
          </children>
          <BorderPane.margin>
             <Insets right="10.0" />

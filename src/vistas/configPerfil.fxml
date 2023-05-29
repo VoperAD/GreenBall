@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfigPerfilController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfigPerfilController">
    <top>
       <Label maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="130.0" text="Información personal" BorderPane.alignment="TOP_LEFT">
          <BorderPane.margin>
@@ -48,8 +48,10 @@
          <children>
             <GridPane maxHeight="1.7976931348623157E308" prefHeight="280.0" prefWidth="355.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="75.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="325.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -61,20 +63,20 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="nombreField" GridPane.columnIndex="1" />
-                  <TextField fx:id="apellidosField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="telField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="nickField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="tarjetaField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="cvvField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="Nombre" />
-                  <Label text="Apellidos" GridPane.rowIndex="1" />
-                  <Label text="Teléfono" GridPane.rowIndex="2" />
-                  <Label text="Nickname" GridPane.rowIndex="3" />
-                  <Label text="Número de tarjeta" GridPane.rowIndex="4" />
-                  <Label text="Código de seguridad (CVV)" GridPane.rowIndex="5" />
-                  <Label text="Contraseña" GridPane.rowIndex="6" />
-                  <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="nombreField" GridPane.columnIndex="2" />
+                  <TextField fx:id="apellidosField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="telField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="nickField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="tarjetaField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <TextField fx:id="cvvField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label text="Nombre" GridPane.columnIndex="1" />
+                  <Label text="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Nickname" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Número de tarjeta" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Código de seguridad (CVV)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="10.0">
