@@ -11,4 +11,8 @@ public class AlertUtils {
         return alert;
     }
 
+    public static Alert createAlert(Alert.AlertType type, final String headerText) {
+        return createAlert(type, headerText, "");
+    }
+
 }

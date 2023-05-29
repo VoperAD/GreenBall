@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -76,7 +77,20 @@
                   <Label text="Número de tarjeta" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Código de seguridad (CVV)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <children>
+                        <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="300.0" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: blue;">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/ojo-password2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="10.0">
