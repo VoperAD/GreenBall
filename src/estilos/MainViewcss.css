@@ -7,10 +7,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Fran
 */
 
+.root{
+    -fx-background-color: #ffffff;
+}
 .grid_menu_bar{
     -fx-background-color: #ededed;
 }
 
+.title{
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
 .date_view{
     -fx-background-color: #5DA62B;
+}
+
+.pane {
+    -fx-background-color: linear-gradient(to bottom right, #5DA62B, #43c0d9);
 }

@@ -13,8 +13,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/MainViewcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <top>
       <GridPane styleClass="grid_menu_bar" stylesheets="@../estilos/MainViewcss.css" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -42,7 +43,7 @@
                   <Insets bottom="5.0" right="10.0" top="5.0" />
                </padding>
             </HBox>
-            <Label style="-fx-font-size: 36; -fx-font-weight: bold;" text="Pistas" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Label styleClass="title" stylesheets="@../estilos/MainViewcss.css" text="Pistas" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin></Label>
@@ -65,7 +66,7 @@
       </GridPane>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0" stylesheets="@../estilos/MainViewcss.css">
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/MainViewcss.css">
          <children>
             <DatePicker fx:id="selectedDate" disable="true">
                <VBox.margin>
@@ -112,6 +113,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab1res" />
                </children>
@@ -131,6 +135,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab2res" />
                </children>
@@ -150,6 +157,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab3res" />
                </children>
@@ -169,6 +179,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab4res" />
                </children>
@@ -188,6 +201,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab5res" />
                </children>
@@ -207,6 +223,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab6res" />
                </children>
@@ -220,13 +239,16 @@
                   </ImageView>
                </graphic>
                <GridPane.margin>
-                  <Insets bottom="20.0" right="15.0" />
+                  <Insets bottom="25.0" right="15.0" />
                </GridPane.margin>
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets right="10.0" />
+            <Insets left="10.0" right="10.0" />
          </BorderPane.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </GridPane>
    </center>
 </BorderPane>
