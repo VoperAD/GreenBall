@@ -12,12 +12,14 @@ import javafx.util.Callback;
 import javafxmlapplication.GreenBallApp;
 import javafxmlapplication.Scenes;
 import model.Booking;
+import model.ClubDAOException;
 import model.Court;
 import model.Member;
 
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -76,10 +78,7 @@ public class HorarioSesionController implements Initializable {
 
     private ObservableList<LocalTime> datos = null;
 
-    private List<Court> pistas;
-    private List<Label> pistasLabel;
     private List<Label> pistasLabelRes;
-    private List<String> nombres;
     private Map<Label, Label> dispReservaMap;
 
     @Override
@@ -163,14 +162,14 @@ public class HorarioSesionController implements Initializable {
     }
 
     @FXML
-    private void onReservar(ActionEvent event) {
+    private void onReservar(ActionEvent event) throws ClubDAOException {
         LocalTime time = timeTable.getSelectionModel().getSelectedItem();
         LocalDate day = datePicker.valueProperty().get();
         if (time == null) return;
 
         Toggle selectedToggle = pistasToggleGroup.getSelectedToggle();
         if (selectedToggle == null) {
-            // debes selecionar una pista
+            // Enviar un mensaje de que se tiene que seleccionar una pista
             return;
         }
 
@@ -178,6 +177,7 @@ public class HorarioSesionController implements Initializable {
         RadioButton button = (RadioButton) selectedToggle;
         String pista = button.getText();
 
+        // Guarda en una lista todas las reservas que tiene el usuario en ese mismo día y en la pista seleccionada
         Member user = GreenBallApp.getUser();
         List<LocalTime> horarios = GreenBallApp.getClub().getUserBookings(user.getNickName()).stream()
                 .filter(booking -> booking.getMadeForDay().isEqual(day))
@@ -193,6 +193,16 @@ public class HorarioSesionController implements Initializable {
             return;
         }
 
+
+        // Registra la reserva
+        GreenBallApp.getClub().registerBooking(
+                LocalDateTime.now(),
+                day,
+                time,
+                user.checkHasCreditInfo(),
+                GreenBallApp.getClub().getCourt(pista),
+                user
+        );
 
     }
 
