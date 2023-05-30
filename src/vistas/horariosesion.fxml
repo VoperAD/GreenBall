@@ -13,8 +13,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HorarioSesionController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/MainViewcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HorarioSesionController">
    <top>
       <GridPane BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -28,13 +29,20 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="900.0" GridPane.columnIndex="2">
                <children>
-                  <Button mnemonicParsing="false" onAction="#volverInicio" text="Volver" />
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#volverInicio" styleClass="back-button" stylesheets="@../estilos/MainViewcss.css" text="Volver">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/backIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
                <padding>
                   <Insets bottom="5.0" right="10.0" top="5.0" />
                </padding>
             </HBox>
-            <Label style="-fx-font-size: 36; -fx-font-weight: bold;" text="Pistas" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label styleClass="title" stylesheets="@../estilos/MainViewcss.css" text="Pistas" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/greenball%20título%20verde%201.png" />
@@ -47,7 +55,7 @@
       </GridPane>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0">
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/MainViewcss.css">
          <children>
             <DatePicker fx:id="selectedDate">
                <VBox.margin>
@@ -94,6 +102,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab1res" />
                </children>
@@ -113,6 +124,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab2res" />
                </children>
@@ -132,6 +146,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab3res" />
                </children>
@@ -151,6 +168,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab4res" />
                </children>
@@ -170,6 +190,9 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab5res" />
                </children>
@@ -189,13 +212,16 @@
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="lab6res" />
                </children>
             </VBox>
          </children>
          <BorderPane.margin>
-            <Insets right="10.0" />
+            <Insets left="10.0" right="10.0" />
          </BorderPane.margin>
       </GridPane>
    </center>

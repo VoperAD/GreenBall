@@ -6,99 +6,163 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistroController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Label text="Nombre" />
-      <Label text="Apellidos" GridPane.rowIndex="1" />
-      <Label text="Teléfono" GridPane.rowIndex="2" />
-      <Label text="Nickname" GridPane.rowIndex="3" />
-      <Label text="Nº Tarjeta" GridPane.rowIndex="5" />
-      <Label text="Código de seguridad (Opcional" GridPane.rowIndex="6" />
-      <Label text="Imagen (opcional)" GridPane.rowIndex="7" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/logincss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistroController">
+   <center>
+      <VBox>
          <children>
-            <Button fx:id="registroButton" mnemonicParsing="false" onAction="#registrarAction" text="Registrarse" />
-            <Button fx:id="volverButtton" mnemonicParsing="false" onAction="#volverAction" text="Volver" />
-         </children>
-      </HBox>
-      <Label text="Contraseña" GridPane.rowIndex="4" />
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-         <children>
-            <TextField fx:id="ccvText" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#revisarCcv" prefHeight="25.0" prefWidth="60.0" promptText="3 dígitos" />
-            <Label fx:id="ccvErrLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="189.0" textAlignment="RIGHT" textFill="RED">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-         <children>
-            <TextField fx:id="tarjetaText" />
-            <Label fx:id="tarjetaErrLabel" textFill="RED" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-         <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <PasswordField fx:id="contText" layoutX="1.0" />
-                  <TextField fx:id="contVisibleText" alignment="CENTER" layoutX="1.0" />
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label styleClass="title" stylesheets="@../estilos/logincss.css" text="Registro" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="volverButtton" contentDisplay="TOP" mnemonicParsing="false" onAction="#volverAction" styleClass="back-button" stylesheets="@../estilos/logincss.css" text="Volver" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets right="20.0" />
+                           </GridPane.margin>
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/backIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </GridPane>
                </children>
-            </Pane>
-            <Label fx:id="contErrLabel" textFill="RED" />
-            <CheckBox fx:id="visibleCheck" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Visible">
-               <HBox.margin>
-                  <Insets left="5.0" />
-               </HBox.margin>
-            </CheckBox>
+            </HBox>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="620.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="190.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="330.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label styleClass="labels" text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label styleClass="labels" text="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label styleClass="labels" text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label styleClass="labels" text="Nickname" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label styleClass="labels" text="Nº Tarjeta" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label styleClass="labels" text="Código de seguridad (Opcional)" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label styleClass="labels" text="Imagen (Opcional)" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                     <children>
+                        <Button fx:id="registroButton" mnemonicParsing="false" onAction="#registrarAction" styleClass="login-button" stylesheets="@../estilos/logincss.css" text="Registrarse" />
+                     </children>
+                  </HBox>
+                  <Label styleClass="labels" text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <children>
+                        <TextField fx:id="ccvText" minHeight="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#revisarCcv" prefHeight="25.0" prefWidth="70.0" promptText="3 dígitos" styleClass="fields" stylesheets="@../estilos/logincss.css" />
+                        <Label fx:id="ccvErrLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="189.0" textAlignment="RIGHT" textFill="RED">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                     <children>
+                        <TextField fx:id="tarjetaText" prefWidth="180.0" styleClass="fields" stylesheets="@../estilos/logincss.css" />
+                        <Label fx:id="tarjetaErrLabel" textFill="RED" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0">
+                           <children>
+                              <PasswordField fx:id="contText" layoutX="1.0" prefWidth="180.0" />
+                              <TextField fx:id="contVisibleText" alignment="CENTER" layoutX="1.0" prefWidth="180.0" styleClass="fields" stylesheets="@../estilos/logincss.css" />
+                           </children>
+                        </Pane>
+                        <Label fx:id="contErrLabel" textFill="RED" />
+                        <CheckBox fx:id="visibleCheck" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Visible">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </CheckBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <children>
+                        <TextField fx:id="nickText" prefWidth="180.0" styleClass="fields" stylesheets="@../estilos/logincss.css" />
+                        <Label fx:id="nickErrLabel" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <TextField fx:id="apellidosText" prefWidth="180.0" styleClass="fields" stylesheets="@../estilos/logincss.css" />
+                        <Label fx:id="apellidosErrLabel" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="nombreText" prefWidth="180.0" styleClass="fields" stylesheets="@../estilos/logincss.css" />
+                        <Label fx:id="nombreErrLabel" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <children>
+                        <TextField fx:id="telText" prefWidth="120.0" styleClass="fields" stylesheets="@../estilos/logincss.css" />
+                        <Label fx:id="telErrLabel">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin></Label>
+                     </children>
+                  </HBox>
+                  <Label styleClass="cabecera" stylesheets="@../estilos/logincss.css" text="Datos Personales" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="cabecera" stylesheets="@../estilos/logincss.css" text="Datos Bancarios" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </GridPane>
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <children>
-            <TextField fx:id="nickText" />
-            <Label fx:id="nickErrLabel" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <TextField fx:id="apellidosText" />
-            <Label fx:id="apellidosErrLabel" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-         <children>
-            <TextField fx:id="nombreText" />
-            <Label fx:id="nombreErrLabel" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <TextField fx:id="telText" />
-            <Label fx:id="telErrLabel" />
-         </children>
-      </HBox>
-   </children>
-</GridPane>
+      </VBox>
+   </center>
+   <left>
+      <Pane prefHeight="600.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/logincss.css" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

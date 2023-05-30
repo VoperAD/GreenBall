@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" styleClass="pane" stylesheets="@../estilos/VistaPerfil.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserController">
    <center>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="432.0" prefWidth="623.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/greenball%20título%20verde%201.png" />
+                  <Image url="@../images/greenball%20título%20mix%20xd%201.1.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="reservarButton" mnemonicParsing="false" onAction="#reservar" prefHeight="30.0" prefWidth="120.0" text="Reservar" />
-            <Button fx:id="misReservasButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Mis Reservas" />
-            <Button fx:id="configButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Configuraciones" />
+            <Button fx:id="reservarButton" mnemonicParsing="false" onAction="#reservar" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Reservar" />
+            <Button fx:id="misReservasButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Mis Reservas" />
+            <Button fx:id="configButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Configuraciones" />
          </children>
       </VBox>
    </center>
