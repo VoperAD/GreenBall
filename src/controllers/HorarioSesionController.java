@@ -100,6 +100,7 @@ public class HorarioSesionController implements Initializable {
         this.setCourtsName();
         this.initReservaLabelsBindings();
         this.initDispBindingsAndListeners();
+        this.initRadioButtonsBindings();
 
         // Deshabilitamos la selección de días anteriores
         Callback<DatePicker, DateCell> dayCellFactory = param -> new DateCell() {
@@ -138,6 +139,7 @@ public class HorarioSesionController implements Initializable {
                     .collect(Collectors.toList());
 
             pistasLabelRes.forEach(p -> p.setText(""));
+            pistasToggleGroup.selectToggle(null);
             if (currentBookings.isEmpty()) return;
 
             for (Booking currentBooking : currentBookings) {
@@ -166,13 +168,45 @@ public class HorarioSesionController implements Initializable {
         LocalDate day = datePicker.valueProperty().get();
         if (time == null) return;
 
+        Toggle selectedToggle = pistasToggleGroup.getSelectedToggle();
+        if (selectedToggle == null) {
+            // debes selecionar una pista
+            return;
+        }
+
+        if (!(selectedToggle instanceof RadioButton)) return;
+        RadioButton button = (RadioButton) selectedToggle;
+        String pista = button.getText();
+
         Member user = GreenBallApp.getUser();
-        List<Booking> userBookings = GreenBallApp.getClub().getUserBookings(user.getNickName()).stream()
+        List<LocalTime> horarios = GreenBallApp.getClub().getUserBookings(user.getNickName()).stream()
                 .filter(booking -> booking.getMadeForDay().isEqual(day))
+                .filter(booking -> booking.getCourt().getName().equals(pista))
+                .map(Booking::getFromTime)
                 .collect(Collectors.toList());
 
+        horarios.add(time);
+        Collections.sort(horarios);
+
+        if (hasSequenceOfThree(horarios, time)) {
+            // No puedes reservar una pista por más de dos horas seguidas
+            return;
+        }
 
 
+    }
+
+    public boolean hasSequenceOfThree(List<LocalTime> times, LocalTime insertedTime) {
+        int index = times.indexOf(insertedTime);
+        if (index >= 0 && index + 2 < times.size()) {
+            LocalTime firstTime = times.get(index);
+            LocalTime secondTime = times.get(index + 1);
+            LocalTime thirdTime = times.get(index + 2);
+
+            return secondTime.equals(firstTime.plusHours(1)) && thirdTime.equals(secondTime.plusHours(1));
+        }
+
+        return false;
     }
 
     private void setCourtsName() {
@@ -206,11 +240,20 @@ public class HorarioSesionController implements Initializable {
             reserva.textProperty().addListener((obs, old, newValue) -> {
                 if (newValue.isBlank()) {
                     disp.setText("Disponible");
-                } else {
-                    disp.setText("Indisponible");
                 }
             });
         }
+    }
+
+    private void initRadioButtonsBindings() {
+        Map<RadioButton, Label> buttons = new HashMap<>();
+        buttons.put(pistaUnoButton, reservaUno);
+        buttons.put(pistaDosButton, reservaDos);
+        buttons.put(pistaTresButton, reservaTres);
+        buttons.put(pistaCuatroButton, reservaCuatro);
+        buttons.put(pistaCincoButton, reservaCinco);
+        buttons.put(pistaSeisButton, reservaSeis);
+        buttons.forEach((radioButton, label) -> radioButton.disableProperty().bind(label.textProperty().isEmpty().not()));
     }
 
 }

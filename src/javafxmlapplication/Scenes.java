@@ -7,7 +7,7 @@ public enum Scenes {
     REGISTRO("registro"),
     USER("user"),
     HORARIOS_SIN_SESION("MainView"),
-    HORARIOS_CON_SESION("testreservar", false),
+    HORARIOS_CON_SESION("horariosesion", false),
     CONFIG_PERFIL("configPerfil", false),
     MIS_RESERVAS("misReservas", false);
 
