@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Club;
 import model.ClubDAOException;
@@ -40,6 +41,7 @@ public class GreenBallApp extends Application {
         }
 
         mainScene = new Scene(ROOTS.get(Scenes.INICIO));
+        stage.getIcons().add(new Image("/images/logo.png"));
         stage.setScene(mainScene);
         stage.setTitle("GreenBall");
         stage.show();

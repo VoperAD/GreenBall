@@ -11,75 +11,70 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfigPerfilController">
-   <top>
-      <Label maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="130.0" text="Información personal" BorderPane.alignment="TOP_LEFT">
-         <BorderPane.margin>
-            <Insets left="10.0" top="10.0" />
-         </BorderPane.margin>
-      </Label>
-   </top>
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/Editarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfigPerfilController">
    <left>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <StackPane prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imagen" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </ImageView>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Cambiar imagen" />
+            <Pane prefHeight="200.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/Editarcss.css" />
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <ImageView fx:id="imagen" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Button alignment="CENTER" mnemonicParsing="false" text="Cambiar imagen" />
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </StackPane>
    </left>
-   <bottom>
-      <Button fx:id="volverButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Volver" BorderPane.alignment="CENTER_LEFT">
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" />
-         </BorderPane.margin>
-      </Button>
-   </bottom>
    <center>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="15.0" />
+            <Insets bottom="10.0" />
          </BorderPane.margin>
          <children>
-            <GridPane maxHeight="1.7976931348623157E308" prefHeight="280.0" prefWidth="355.0">
+            <GridPane prefHeight="360.0" prefWidth="600.0">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="75.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="325.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="190.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="nombreField" GridPane.columnIndex="2" />
-                  <TextField fx:id="apellidosField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField fx:id="telField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="nickField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <TextField fx:id="tarjetaField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <TextField fx:id="cvvField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label text="Nombre" GridPane.columnIndex="1" />
-                  <Label text="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Nickname" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Número de tarjeta" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Código de seguridad (CVV)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <TextField fx:id="nombreField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="apellidosField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="telField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="nickField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <TextField fx:id="tarjetaField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <TextField fx:id="cvvField" maxWidth="70.0" prefColumnCount="1" prefWidth="70.0" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Label text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Nickname" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Número de tarjeta" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label text="Código de seguridad (CVV)" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <children>
-                        <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="300.0" />
+                        <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="300.0" styleClass="fields" stylesheets="@../estilos/Editarcss.css" />
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: blue;">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -91,15 +86,74 @@
                         </Button>
                      </children>
                   </HBox>
+                  <Label styleClass="cabecera" stylesheets="@../estilos/Editarcss.css" text="Datos Personales" GridPane.columnSpan="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="cabecera" stylesheets="@../estilos/Editarcss.css" text="Datos Bancarios" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
+               <VBox.margin>
+                  <Insets right="50.0" />
+               </VBox.margin>
             </GridPane>
-            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" spacing="10.0">
+            <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="restoreButton" mnemonicParsing="false" text="Restablecer campos" />
-                  <Button fx:id="guardarCambiosButton" mnemonicParsing="false" onAction="#onGuardarCambios" text="Guardar cambios" />
+                  <Button fx:id="restoreButton" mnemonicParsing="false" styleClass="login-button" stylesheets="@../estilos/Editarcss.css" text="Restablecer campos">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button fx:id="guardarCambiosButton" mnemonicParsing="false" onAction="#onGuardarCambios" styleClass="login-button" stylesheets="@../estilos/Editarcss.css" text="Guardar cambios" />
                </children>
             </HBox>
          </children>
       </VBox>
    </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label styleClass="title" stylesheets="@../estilos/Editarcss.css" text="Editar Perfil" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/greenball%20título%20verde%201.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="15.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Button fx:id="volverButton" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" styleClass="back-button" stylesheets="@../estilos/Editarcss.css" text="Volver" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/backIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
