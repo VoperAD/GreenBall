@@ -21,7 +21,7 @@ import java.util.function.BiConsumer;
 public class ConfigPerfilController implements Initializable {
 
     @FXML
-    private ImageView seePassword;
+    private Button seePasswordButton;
     @FXML
     private TextField nombreField;
     @FXML
@@ -51,6 +51,7 @@ public class ConfigPerfilController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         volverButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.USER));
         restoreButton.setOnAction(event -> this.setFields());
+        seePasswordButton.setOnMouseClicked(mouseEvent -> {});
 
         // Si no hay cambios en ningún field, deshabilitar el botón
         guardarCambiosButton.disableProperty().bind(fieldsModified.not());

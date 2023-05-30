@@ -69,7 +69,7 @@
                   <TextField fx:id="telField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <TextField fx:id="nickField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <TextField fx:id="tarjetaField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <TextField fx:id="cvvField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <TextField fx:id="cvvField" promptText="3 dígitos" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <Label text="Nombre" GridPane.columnIndex="1" />
                   <Label text="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -80,11 +80,11 @@
                   <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <children>
                         <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="300.0" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: blue;">
+                        <Button fx:id="seePasswordButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;">
                            <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/ojo-password2.png" />
+                                    <Image url="@../images/ojo-password3.png" />
                                  </image>
                               </ImageView>
                            </graphic>
