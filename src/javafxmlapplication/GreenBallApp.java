@@ -1,6 +1,9 @@
 package javafxmlapplication;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +48,9 @@ public class GreenBallApp extends Application {
         stage.setScene(mainScene);
         stage.setTitle("GreenBall");
         stage.show();
+
+
+//        getClub().registerBooking(LocalDateTime.now(), LocalDate.of(2023, 9, 10), LocalTime.of(10, 0),true, getClub().getCourt("Pista 1"), getClub().getMemberByCredentials("user2", "123456x"));
     }
 
     // Método para resetear el estado de una scene

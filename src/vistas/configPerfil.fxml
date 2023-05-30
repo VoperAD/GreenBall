@@ -63,16 +63,16 @@
                   <TextField fx:id="apellidosField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <TextField fx:id="telField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <TextField fx:id="nickField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <TextField fx:id="tarjetaField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                  <TextField fx:id="cvvField" maxWidth="70.0" prefColumnCount="1" prefWidth="70.0" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <TextField fx:id="tarjetaField" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <TextField fx:id="cvvField" maxWidth="70.0" prefColumnCount="1" prefWidth="70.0" promptText="3 dígitos" styleClass="fields" stylesheets="@../estilos/Editarcss.css" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                   <Label text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Teléfono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Nickname" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Número de tarjeta" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label text="Código de seguridad (CVV)" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                  <Label text="Número de tarjeta" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label text="Código de seguridad (CVV)" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label text="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <children>
                         <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="300.0" styleClass="fields" stylesheets="@../estilos/Editarcss.css" />
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: blue;">
@@ -86,12 +86,12 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Label styleClass="cabecera" stylesheets="@../estilos/Editarcss.css" text="Datos Personales" GridPane.columnSpan="2">
+                  <Label styleClass="cabecera" stylesheets="@../estilos/Editarcss.css" text="Datos Personales" GridPane.columnSpan="2" GridPane.halignment="LEFT">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label styleClass="cabecera" stylesheets="@../estilos/Editarcss.css" text="Datos Bancarios" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                  <Label styleClass="cabecera" stylesheets="@../estilos/Editarcss.css" text="Datos Bancarios" GridPane.columnSpan="2" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>

@@ -8,7 +8,8 @@ public enum Scenes {
     USER("user"),
     HORARIOS_SIN_SESION("MainView"),
     HORARIOS_CON_SESION("horariosesion"),
-    CONFIG_PERFIL("configPerfil", false);
+    CONFIG_PERFIL("configPerfil", false),
+    MIS_RESERVAS("misReservas", false);
 
     private final String filePath;
     // Debe cargarse al iniciar el programa?

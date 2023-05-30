@@ -22,6 +22,7 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.CONFIG_PERFIL));
+        misReservasButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.MIS_RESERVAS));
     }
 
     private void cerrarSesionAction(ActionEvent event) {
