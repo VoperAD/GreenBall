@@ -16,9 +16,10 @@
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="reservarButton" mnemonicParsing="false" onAction="#reservar" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Reservar" />
+            <Button fx:id="reservarButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Reservar" />
             <Button fx:id="misReservasButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Mis Reservas" />
             <Button fx:id="configButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Configuraciones" />
+            <Button fx:id="salirButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="buttons" stylesheets="@../estilos/VistaPerfil.css" text="Salir" />
          </children>
       </VBox>
    </center>

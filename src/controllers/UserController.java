@@ -13,6 +13,8 @@ import javafxmlapplication.Scenes;
 public class UserController implements Initializable {
 
     @FXML
+    private Button salirButton;
+    @FXML
     private Button reservarButton;
     @FXML
     private Button misReservasButton;
@@ -23,14 +25,13 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.CONFIG_PERFIL));
         misReservasButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.MIS_RESERVAS));
+        reservarButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION));
+        salirButton.setOnAction(this::onSalir);
     }
 
-    private void cerrarSesionAction(ActionEvent event) {
+    private void onSalir(ActionEvent event) {
+        GreenBallApp.setUser(null);
         GreenBallApp.setRoot(Scenes.INICIO);
     }
 
-    @FXML
-    private void reservar(ActionEvent event) {
-        GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION);
-    }
 }

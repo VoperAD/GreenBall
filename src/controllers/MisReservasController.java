@@ -23,10 +23,7 @@ import utils.AlertUtils;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -64,6 +61,8 @@ public class MisReservasController implements Initializable {
         if (user == null) {
             throw new IllegalStateException("No se ha establecido el user global correctamente");
         }
+
+        holaText.setText(holaText.getText() + user.getName() + "!");
 
         // Valores para cada columna
         dayColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getMadeForDay().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))));

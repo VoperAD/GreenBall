@@ -5,6 +5,8 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -57,7 +59,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/MainViewcss.css">
          <children>
-            <DatePicker fx:id="selectedDate">
+            <DatePicker fx:id="datePicker">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -67,6 +69,14 @@
                   <Insets bottom="30.0" left="30.0" right="30.0" top="15.0" />
                </VBox.margin>
             </ListView>
+            <Button fx:id="reservarButton" mnemonicParsing="false" onAction="#onReservar" style="-fx-background-radius: 30; -fx-background-color: #79c462; -fx-border-color: black; -fx-border-radius: 30; -fx-border-width: 1.3; -fx-cursor: hand;" text="Realizar Reserva">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
@@ -78,145 +88,107 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="123.0" prefWidth="204.0" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" prefHeight="123.0" prefWidth="204.0" spacing="15.0">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/tennisCourt.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label fx:id="lab1" text="Pista 1">
+                  <Label fx:id="pistaUnoDisp" text="Disponible" />
+                  <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/tennisCourt.jpg" />
+                     </image>
+                  </ImageView>
+                  <RadioButton fx:id="pistaUnoButton" mnemonicParsing="false" text="Pista 1">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lab1res" />
+                     <toggleGroup>
+                        <ToggleGroup fx:id="pistasToggleGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <Label fx:id="reservaUno" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/tennisCourt.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label fx:id="lab2" text="Pista 2">
+                  <Label fx:id="pistaDosDisp" text="Disponible" />
+                  <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/tennisCourt.jpg" />
+                     </image>
+                  </ImageView>
+                  <RadioButton fx:id="pistaDosButton" mnemonicParsing="false" text="Pista 2" toggleGroup="$pistasToggleGroup">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lab2res" />
+                  </RadioButton>
+                  <Label fx:id="reservaDos" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="2">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/tennisCourt.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label fx:id="lab3" text="Pista 3">
+                  <Label fx:id="pistaTresDisp" text="Disponible" />
+                  <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/tennisCourt.jpg" />
+                     </image>
+                  </ImageView>
+                  <RadioButton fx:id="pistaTresButton" mnemonicParsing="false" text="Pista 3" toggleGroup="$pistasToggleGroup">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lab3res" />
+                  </RadioButton>
+                  <Label fx:id="reservaTres" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" spacing="15.0" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/tennisCourt.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label fx:id="lab4" text="Pista 4">
+                  <Label fx:id="pistaCuatroDisp" text="Disponible" />
+                  <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/tennisCourt.jpg" />
+                     </image>
+                  </ImageView>
+                  <RadioButton fx:id="pistaCuatroButton" mnemonicParsing="false" text="Pista 4" toggleGroup="$pistasToggleGroup">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lab4res" />
+                  </RadioButton>
+                  <Label fx:id="reservaCuatro" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/tennisCourt.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label fx:id="lab5" text="Pista 5">
+                  <Label fx:id="pistaCincoDisp" text="Disponible" />
+                  <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/tennisCourt.jpg" />
+                     </image>
+                  </ImageView>
+                  <RadioButton fx:id="pistaCincoButton" mnemonicParsing="false" text="Pista 5" toggleGroup="$pistasToggleGroup">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lab5res" />
+                  </RadioButton>
+                  <Label fx:id="reservaCinco" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" spacing="15.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/tennisCourt.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label fx:id="lab6" text="Pista 6">
+                  <Label fx:id="pistaSeisDisp" text="Disponible" />
+                  <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/tennisCourt.jpg" />
+                     </image>
+                  </ImageView>
+                  <RadioButton fx:id="pistaSeisButton" mnemonicParsing="false" text="Pista 6" toggleGroup="$pistasToggleGroup">
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lab6res" />
+                  </RadioButton>
+                  <Label fx:id="reservaSeis" />
                </children>
             </VBox>
          </children>

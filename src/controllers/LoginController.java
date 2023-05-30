@@ -60,6 +60,11 @@ public class LoginController implements Initializable {
 
         AlertUtils.createAlert(Alert.AlertType.INFORMATION, "Sesión iniciada con éxito!", "");
         GreenBallApp.setUser(memberByCredentials);
+
+        GreenBallApp.reloadScene(Scenes.MIS_RESERVAS);
+        GreenBallApp.reloadScene(Scenes.CONFIG_PERFIL);
+        GreenBallApp.reloadScene(Scenes.HORARIOS_CON_SESION);
+
         GreenBallApp.setRoot(Scenes.USER);
     }
 
