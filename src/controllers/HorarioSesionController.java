@@ -205,13 +205,6 @@ public class HorarioSesionController implements Initializable {
                 GreenBallApp.getClub().getCourt(pista),
                 user
         );
-        
-        GreenBallApp.reloadScene(Scenes.MIS_RESERVAS);
-        GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION);
-        int ret = timeTable.getSelectionModel().getSelectedIndex();
-        timeTable.getSelectionModel().select(0);
-        timeTable.getSelectionModel().select(ret);
-        
 
         if (result == null) {
             throw new RuntimeException("Error al realizar la reserva Booking = null");
