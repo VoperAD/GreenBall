@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/Editarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfigPerfilController">
    <left>
@@ -23,12 +24,15 @@
             <Pane prefHeight="200.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/Editarcss.css" />
             <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="250.0" spacing="10.0">
                <children>
-                  <ImageView fx:id="imagen" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <Circle fx:id="circleImage" fill="WHITE" radius="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="40.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
-                  </ImageView>
-                  <Button fx:id="cambiarImagenButton" alignment="CENTER" mnemonicParsing="false" onAction="#cambiarImagen" text="Cambiar imagen" />
+                  </Circle>
+                  <Button fx:id="cambiarImagenButton" alignment="CENTER" mnemonicParsing="false" onAction="#cambiarImagen" text="Cambiar imagen">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
                </children>
             </VBox>
          </children>

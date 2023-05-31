@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
 <BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/logincss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistroController">
    <center>
@@ -167,12 +168,8 @@
    <left>
       <Pane prefHeight="600.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/logincss.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" layoutX="50.0" layoutY="29.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/userIcon.png" />
-               </image>
-            </ImageView>
             <Button fx:id="cambiarImagenButton" layoutX="99.0" layoutY="200.0" mnemonicParsing="false" onAction="#cambiarImagen" text="Cambiar" />
+            <Circle fx:id="circleImage" fill="WHITE" layoutX="125.0" layoutY="105.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
          </children></Pane>
    </left>
 </BorderPane>

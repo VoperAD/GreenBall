@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 public class MisReservasController implements Initializable {
 
@@ -51,6 +53,8 @@ public class MisReservasController implements Initializable {
     private TableColumn<Booking, Boolean> isPaidColumn;
 
     private ObservableList<Booking> bookings = null;
+    @FXML
+    private Circle circleImage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,7 +75,7 @@ public class MisReservasController implements Initializable {
                 .filter(booking -> !LocalTime.now().isAfter(booking.getFromTime().plusHours(GreenBallApp.getClub().getBookingDuration())))
                 .collect(Collectors.toList());
 
-        if (userBookingsOrdered.size() > 10) {
+        if (userBookingsOrdered.size() >= 10) {
             bookings = FXCollections.observableArrayList(userBookingsOrdered.subList(0, 10));
             userBookingsOrdered.subList(0, 10).clear();
         } else {
@@ -84,6 +88,8 @@ public class MisReservasController implements Initializable {
         });
 
         tableView.setItems(bookings);
+        Image img = GreenBallApp.getUser().getImage();
+        circleImage.setFill(new ImagePattern(img));
     }
 
     @FXML

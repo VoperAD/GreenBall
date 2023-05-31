@@ -30,6 +30,8 @@ import java.util.logging.Logger;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -82,14 +84,17 @@ public class RegistroController implements Initializable {
     private final SimpleBooleanProperty okProperty = new SimpleBooleanProperty(true);
 
     private Club club = GreenBallApp.getClub();
-    @FXML
-    private ImageView imageView;
+    private Image imageOfCircle;
     @FXML
     private Button cambiarImagenButton;
+    @FXML
+    private Circle circleImage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        imageOfCircle = new Image("/images/userIcon.png",150,150,false,true);
+        circleImage.setFill(new ImagePattern(imageOfCircle));
         registroButton.disableProperty().bind(Bindings.not(Bindings.createBooleanBinding(() ->
                     nombreProperty.get() && apellidosProperty.get() && telefonoProperty.get() && nicknameProperty.get() &&
                             passwordProperty.get() && okProperty.get(),
@@ -314,9 +319,8 @@ public class RegistroController implements Initializable {
                 svc = 0;
             }
             
-            Image img = imageView.getImage();
             
-            Member result = club.registerMember(name, surname, telephon, login, password, creditCard, svc, img);
+            Member result = club.registerMember(name, surname, telephon, login, password, creditCard, svc, imageOfCircle);
             
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("GreenBall Informa");
@@ -342,8 +346,8 @@ public class RegistroController implements Initializable {
                 e.printStackTrace();
             }
         }
-        Image img = new Image("/images/userIcon.png",150,150,false,true);
-        imageView.setImage(img);
+        imageOfCircle = new Image("/images/userIcon.png",150,150,false,true);
+        circleImage.setFill(new ImagePattern(imageOfCircle));
     }
 
     @FXML
@@ -364,7 +368,8 @@ public class RegistroController implements Initializable {
         if (selectedFile != null) {
             try {
                 Image img = new Image(selectedFile.toURI().toURL().toExternalForm(),150,150,false,true);
-                imageView.setImage(img);
+                imageOfCircle = img;
+                circleImage.setFill(new ImagePattern(img));
             } catch (MalformedURLException ex) {
                 Alert dialog = new Alert(Alert.AlertType.ERROR);
                 dialog.setTitle("GreenBall Informa");

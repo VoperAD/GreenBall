@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 import java.util.function.BiConsumer;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 public class ConfigPerfilController implements Initializable {
@@ -47,12 +49,13 @@ public class ConfigPerfilController implements Initializable {
     private Button volverButton;
     @FXML
     private Button restoreButton;
-    @FXML
-    private ImageView imagen;
+    private Image imagen;
 
     private SimpleBooleanProperty fieldsModified = new SimpleBooleanProperty(false);
     @FXML
     private Button cambiarImagenButton;
+    @FXML
+    private Circle circleImage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,6 +78,7 @@ public class ConfigPerfilController implements Initializable {
 
         this.setFields();
         nickField.setDisable(true);
+        
     }
 
     @FXML
@@ -141,14 +145,14 @@ public class ConfigPerfilController implements Initializable {
             }
         }
 
-        user.setImage(imagen.getImage());
+        user.setImage(imagen);
         user.setName(nombreFieldText);
         user.setSurname(apellidosFieldText);
         user.setTelephone(telFieldText);
         user.setPassword(passwordText);
         user.setCreditCard(tarjeta);
         user.setSvc(cvv.isBlank() ? 0 : Integer.parseInt(cvvField.getText()));
-
+        
         Alert success = AlertUtils.createAlert(Alert.AlertType.INFORMATION, "Los cambios se han guardado correctamente");
         success.showAndWait();
 
@@ -159,7 +163,8 @@ public class ConfigPerfilController implements Initializable {
         if (user == null) {
             throw new IllegalStateException("No se ha establecido el user global correctamente");
         }
-        imagen.setImage(user.getImage());
+        imagen = user.getImage();
+        circleImage.setFill(new ImagePattern(imagen));
         nombreField.setText(user.getName());
         apellidosField.setText(user.getSurname());
         telField.setText(user.getTelephone());
@@ -180,7 +185,8 @@ public class ConfigPerfilController implements Initializable {
         if (selectedFile != null) {
             try {
                 Image img = new Image(selectedFile.toURI().toURL().toExternalForm(),150,150,false,true);
-                imagen.setImage(img);
+                imagen = img;
+                circleImage.setFill(new ImagePattern(imagen));
             } catch (MalformedURLException ex) {
                 Alert dialog = new Alert(Alert.AlertType.ERROR);
                 dialog.setTitle("GreenBall Informa");

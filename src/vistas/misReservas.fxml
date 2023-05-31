@@ -10,20 +10,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MisReservasController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0" style="-fx-background-color: linear-gradient(to bottom right, #5DA62B, #43c0d9); -fx-background-radius: 20;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="84.0" prefWidth="550.0" spacing="25.0" style="-fx-background-color: linear-gradient(to bottom right, #5DA62B, #43c0d9); -fx-background-radius: 20;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/userIcon.png" />
-               </image>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </ImageView>
+            <Circle fx:id="circleImage" fill="DODGERBLUE" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
             <VBox prefHeight="100.0" prefWidth="335.0">
                <children>
                   <Label fx:id="holaText" text="Hola, " textFill="WHITE">
@@ -79,14 +73,17 @@
       </VBox>
    </left>
    <center>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="250.0" prefWidth="400.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="dayColumn" prefWidth="122.0" text="Día de la reserva" />
           <TableColumn fx:id="startTimeColumn" prefWidth="64.0" text="Inicio" />
             <TableColumn fx:id="endTimeColumn" prefWidth="75.0" text="Fin" />
             <TableColumn fx:id="pistaColumn" prefWidth="75.0" text="Pista" />
-            <TableColumn fx:id="isPaidColumn" prefWidth="75.0" text="Pagada" />
+            <TableColumn fx:id="isPaidColumn" prefWidth="61.0" text="Pagada" />
         </columns>
+         <BorderPane.margin>
+            <Insets bottom="25.0" right="25.0" />
+         </BorderPane.margin>
       </TableView>
    </center>
 </BorderPane>
