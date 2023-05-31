@@ -23,6 +23,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class HorarioSesionController implements Initializable {
 
@@ -223,6 +225,13 @@ public class HorarioSesionController implements Initializable {
             dialog.setTitle("GreenBall Informa");
             dialog.setHeaderText("Límite de reservas superado");
             dialog.setContentText("No pudes reservar la misma pista por más de 3 horas consecutivas");
+            Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+            DialogPane dialogPane = dialog.getDialogPane();
+            dialogPane.getStylesheets().add(
+          getClass().getResource("/estilos/global-style.css").toExternalForm());
+        //Asigna la clase .myAlert al contenedor principal del diálogo
+            dialog.getDialogPane().getStyleClass().add("info");
             dialog.showAndWait();
             return;
         }

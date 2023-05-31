@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import javafx.stage.Stage;
 
 public class MisReservasController implements Initializable {
 
@@ -116,6 +117,13 @@ public class MisReservasController implements Initializable {
         // Mismo día, no se puede cancelar
         if (now.isEqual(madeForDay) || (now.until(madeForDay).getDays() == 1 && LocalTime.now().isAfter(fromTime))) {
             Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "No ha sido posible anular la reserva!", "No se puede cancelar una reserva con menos de 24 horas de antelación");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+            getClass().getResource("/estilos/global-style.css").toExternalForm());
+            //Asigna la clase .myAlert al contenedor principal del diálogo
+            alert.getDialogPane().getStyleClass().add("info");
             alert.showAndWait();
             return;
         }
@@ -125,6 +133,13 @@ public class MisReservasController implements Initializable {
                 "Hora: " + fromTime + "\n" +
                 "Pista: " + selectedItem.getCourt().getName()
         );
+        Stage stage = (Stage) confirm.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+        DialogPane dialogPane = confirm.getDialogPane();
+        dialogPane.getStylesheets().add(
+        getClass().getResource("/estilos/global-style.css").toExternalForm());
+        //Asigna la clase .myAlert al contenedor principal del diálogo
+        confirm.getDialogPane().getStyleClass().add("info");
 
         ButtonType si = new ButtonType("Sí");
         ButtonType no = new ButtonType("No");
@@ -157,7 +172,13 @@ public class MisReservasController implements Initializable {
                 "Estás seguro de que quieres cancelar todas tus reservas?",
                 "Se cancelarán todas las reservas que no estén dentro de las próximas 24 horas! " +
                         "Atención: esta es una acción irreversible!");
-
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+        getClass().getResource("/estilos/global-style.css").toExternalForm());
+        //Asigna la clase .myAlert al contenedor principal del diálogo
+        alert.getDialogPane().getStyleClass().add("info");
         ButtonType si = new ButtonType("Sí");
         ButtonType no = new ButtonType("No");
         alert.getButtonTypes().clear();
