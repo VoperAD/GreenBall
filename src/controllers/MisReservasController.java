@@ -71,7 +71,7 @@ public class MisReservasController implements Initializable {
                 .filter(booking -> !LocalTime.now().isAfter(booking.getFromTime().plusHours(GreenBallApp.getClub().getBookingDuration())))
                 .collect(Collectors.toList());
 
-        if (userBookingsOrdered.size() > 10) {
+        if (userBookingsOrdered.size() >= 10) {
             bookings = FXCollections.observableArrayList(userBookingsOrdered.subList(0, 10));
             userBookingsOrdered.subList(0, 10).clear();
         } else {
