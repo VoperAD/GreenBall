@@ -19,7 +19,9 @@ import utils.AlertUtils;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.BiConsumer;
+import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -56,6 +58,10 @@ public class ConfigPerfilController implements Initializable {
     private Button cambiarImagenButton;
     @FXML
     private Circle circleImage;
+    @FXML
+    private TextField textField;
+    @FXML
+    private CheckBox visibleCheck;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -78,6 +84,12 @@ public class ConfigPerfilController implements Initializable {
 
         this.setFields();
         nickField.setDisable(true);
+        
+        textField.textProperty().bindBidirectional(passwordField.textProperty());
+        passwordField.disableProperty().bind(visibleCheck.selectedProperty());
+        passwordField.visibleProperty().bind(Bindings.not(visibleCheck.selectedProperty()));
+        textField.disableProperty().bind(Bindings.not(visibleCheck.selectedProperty()));
+        textField.visibleProperty().bind(visibleCheck.selectedProperty());
         
     }
 
