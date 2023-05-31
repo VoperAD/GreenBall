@@ -42,25 +42,11 @@ public class LoginController implements Initializable {
         String nickname = nickText.getText();
         String password = passwordField.getText();
 
-        // Nickname inexistente
-        if (!club.existsLogin(nickname)) {
-            Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "Error en el Login!", "El usuario introducido no existe!");
-            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
-            DialogPane dialogPane = alert.getDialogPane();
-            dialogPane.getStylesheets().add(
-            getClass().getResource("/estilos/global-style.css").toExternalForm());
-            //Asigna la clase .myAlert al contenedor principal del diálogo
-            alert.getDialogPane().getStyleClass().add("info");
-            alert.showAndWait();
-            return;
-        }
-
         Member memberByCredentials = club.getMemberByCredentials(nickname, password);
 
-        // Contraseña errónea
-        if (memberByCredentials == null) {
-            Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "Error en el Login!", "La contraseña introducida es incorrecta!");
+        // Nickname inexistente
+        if (!club.existsLogin(nickname) || memberByCredentials == null) {
+            Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "Error en el Login!", "La combinación es incorrecta.");
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
             DialogPane dialogPane = alert.getDialogPane();
@@ -71,6 +57,22 @@ public class LoginController implements Initializable {
             alert.showAndWait();
             return;
         }
+
+
+//
+//        // Contraseña errónea
+//        if (memberByCredentials == null) {
+//            Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "Error en el Login!", "La combinación es incorrecta.");
+//            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+//            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+//            DialogPane dialogPane = alert.getDialogPane();
+//            dialogPane.getStylesheets().add(
+//            getClass().getResource("/estilos/global-style.css").toExternalForm());
+//            //Asigna la clase .myAlert al contenedor principal del diálogo
+//            alert.getDialogPane().getStyleClass().add("info");
+//            alert.showAndWait();
+//            return;
+//        }
 
         passwordField.clear();
         nickText.clear();

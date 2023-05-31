@@ -17,6 +17,7 @@
 
 .button:hover {
     -fx-background-color: darkgreen;
+    -fx-cursor: hand;
 }
 #userBar {
     -fx-background-color: linear-gradient(to bottom right, #0c570d, #479e49);

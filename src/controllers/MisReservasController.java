@@ -11,9 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafxmlapplication.GreenBallApp;
@@ -67,6 +69,7 @@ public class MisReservasController implements Initializable {
         }
 
         this.initTableColumns();
+        this.setupTableViewPlaceholder();
         volverButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.USER));
         anularButton.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
         holaText.setText(holaText.getText() + user.getName() + "!");
@@ -160,11 +163,18 @@ public class MisReservasController implements Initializable {
         Club club = GreenBallApp.getClub();
 
         List<Booking> validBookings = club.getUserBookings(user.getNickName()).stream()
-                .filter(booking -> LocalDate.now().until(booking.getMadeForDay()).getDays() >= 1)
+                .filter(booking -> LocalDate.now().until(booking.getMadeForDay()).getDays() > 1 ||
+                        LocalDate.now().until(booking.getMadeForDay()).getDays() == 1 && !LocalTime.now().isAfter(booking.getFromTime()))
                 .collect(Collectors.toList());
 
         if (validBookings.isEmpty()) {
-            AlertUtils.createAlert(Alert.AlertType.ERROR, "No existen reservas que se puedan cancelar!").showAndWait();
+            Alert fail = AlertUtils.createAlert(Alert.AlertType.ERROR, "No existen reservas que se puedan cancelar!");
+            Stage stage = (Stage) fail.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+            DialogPane dialogPane = fail.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/estilos/global-style.css").toExternalForm());
+            fail.getDialogPane().getStyleClass().add("info");
+            fail.showAndWait();
             return;
         }
 
@@ -172,6 +182,7 @@ public class MisReservasController implements Initializable {
                 "Estás seguro de que quieres cancelar todas tus reservas?",
                 "Se cancelarán todas las reservas que no estén dentro de las próximas 24 horas! " +
                         "Atención: esta es una acción irreversible!");
+
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
         DialogPane dialogPane = alert.getDialogPane();
@@ -179,6 +190,7 @@ public class MisReservasController implements Initializable {
         getClass().getResource("/estilos/global-style.css").toExternalForm());
         //Asigna la clase .myAlert al contenedor principal del diálogo
         alert.getDialogPane().getStyleClass().add("info");
+
         ButtonType si = new ButtonType("Sí");
         ButtonType no = new ButtonType("No");
         alert.getButtonTypes().clear();
@@ -202,6 +214,21 @@ public class MisReservasController implements Initializable {
         pistaColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getCourt().getName()));
         isPaidColumn.setCellValueFactory(booking -> new SimpleBooleanProperty(booking.getValue().getPaid()));
         isPaidColumn.setCellFactory(c -> new PaidCell());
+    }
+
+    private void setupTableViewPlaceholder() {
+        ImageView imageView = new ImageView("images/infoIcon.png");
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(100);
+
+        Label textLabel = new Label("Todavía no tienes ninguna reserva.");
+        textLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
+
+        VBox placeholderBox = new VBox(imageView, textLabel);
+        placeholderBox.setAlignment(Pos.CENTER);
+        placeholderBox.setSpacing(15);
+
+        tableView.setPlaceholder(placeholderBox);
     }
 
     private static class PaidCell extends TableCell<Booking, Boolean> {

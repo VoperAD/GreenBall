@@ -25,6 +25,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import utils.AlertUtils;
 
 public class HorarioSesionController implements Initializable {
 
@@ -74,7 +75,6 @@ public class HorarioSesionController implements Initializable {
     private Label reservaSeis;
 
     private ObservableList<LocalTime> datos = null;
-
     private List<Label> pistasLabelRes;
     private Map<Label, Label> dispReservaMap;
 
@@ -97,6 +97,12 @@ public class HorarioSesionController implements Initializable {
         this.initReservaLabelsBindings();
         this.initDispBindings();
         this.initRadioButtonsBindings();
+
+        // Binding del botón de reservar -> solo se activa cuando se selecciona hora y pista
+        reservarButton.disableProperty().bind(Bindings.or(
+                pistasToggleGroup.selectedToggleProperty().isNull(),
+                Bindings.isNull(timeTable.getSelectionModel().selectedItemProperty()))
+        );
 
         // Deshabilitamos la selección de días anteriores
         Callback<DatePicker, DateCell> dayCellFactory = param -> new DateCell() {
@@ -153,7 +159,6 @@ public class HorarioSesionController implements Initializable {
             timeTable.getItems().clear();
             timeTable.getItems().addAll(hours);
 
-//            timeTable.setItems(datos);
             int ret = timeTable.getSelectionModel().getSelectedIndex();
             timeTable.getSelectionModel().select(ret + 1 >= datos.size() ? 0 : datos.size() - 1);
             timeTable.getSelectionModel().select(ret);
@@ -192,17 +197,7 @@ public class HorarioSesionController implements Initializable {
     private void onReservar(ActionEvent event) throws ClubDAOException {
         LocalTime time = timeTable.getSelectionModel().getSelectedItem();
         LocalDate day = datePicker.valueProperty().get();
-
-        if (time == null) {
-            // Enviar un alerta de que se tiene que seleccionar una hora
-            return;
-        }
-
         Toggle selectedToggle = pistasToggleGroup.getSelectedToggle();
-        if (selectedToggle == null) {
-            // Enviar un mensaje de que se tiene que seleccionar una pista
-            return;
-        }
 
         if (!(selectedToggle instanceof RadioButton)) return;
         RadioButton button = (RadioButton) selectedToggle;
@@ -221,16 +216,12 @@ public class HorarioSesionController implements Initializable {
 
         if (hasSequenceOfThree(horarios)) {
             // No puedes reservar una pista por más de dos horas seguidas
-            Alert dialog = new Alert(Alert.AlertType.ERROR);
-            dialog.setTitle("GreenBall Informa");
-            dialog.setHeaderText("Límite de reservas superado");
-            dialog.setContentText("No pudes reservar la misma pista por más de 3 horas consecutivas");
+            Alert dialog = AlertUtils.createAlert(Alert.AlertType.ERROR, "Límite de reservas superado", "No pudes reservar la misma pista por más de 3 horas consecutivas");
             Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo.png")));
             DialogPane dialogPane = dialog.getDialogPane();
-            dialogPane.getStylesheets().add(
-          getClass().getResource("/estilos/global-style.css").toExternalForm());
-        //Asigna la clase .myAlert al contenedor principal del diálogo
+            dialogPane.getStylesheets().add(getClass().getResource("/estilos/global-style.css").toExternalForm());
+            //Asigna la clase .myAlert al contenedor principal del diálogo
             dialog.getDialogPane().getStyleClass().add("info");
             dialog.showAndWait();
             return;
