@@ -52,10 +52,10 @@ public class MisReservasController implements Initializable {
     private TableColumn<Booking, String> pistaColumn;
     @FXML
     private TableColumn<Booking, Boolean> isPaidColumn;
-
-    private ObservableList<Booking> bookings = null;
     @FXML
     private Circle circleImage;
+
+    private ObservableList<Booking> bookings = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

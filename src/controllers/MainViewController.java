@@ -34,13 +34,6 @@ public class MainViewController implements Initializable {
     private DatePicker selectedDate;
     @FXML
     private ListView<String> timeTable;
-    
-    private ObservableList<String> datos = null;
-
-    private List<Court> pistas;
-    private List<Label> pistasLabel;
-    private List<Label> pistasLabelRes;
-    private List<String> nombres;
     @FXML
     private Label lab1;
     @FXML
@@ -67,9 +60,14 @@ public class MainViewController implements Initializable {
     private Label lab6res;
     @FXML
     private Circle circleImage;
-    /**
-     * Initializes the controller class.
-     */
+
+    private ObservableList<String> datos = null;
+
+    private List<Court> pistas;
+    private List<Label> pistasLabel;
+    private List<Label> pistasLabelRes;
+    private List<String> nombres;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
@@ -78,7 +76,7 @@ public class MainViewController implements Initializable {
     hours.add("12:00");hours.add("13:00");hours.add("14:00");
     hours.add("15:00");hours.add("16:00");hours.add("17:00");
     hours.add("18:00");hours.add("19:00");hours.add("20:00");
-    hours.add("21:00");hours.add("22:00");
+    hours.add("21:00");
 
     datos = FXCollections.observableArrayList(hours);
     timeTable.setItems(datos);

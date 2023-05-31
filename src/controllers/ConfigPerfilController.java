@@ -1,29 +1,28 @@
 package controllers;
 
-import java.io.File;
-import java.net.MalformedURLException;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafxmlapplication.GreenBallApp;
 import javafxmlapplication.Scenes;
 import model.Member;
 import utils.AlertUtils;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.BiConsumer;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.stage.FileChooser;
 
 public class ConfigPerfilController implements Initializable {
 
@@ -49,13 +48,13 @@ public class ConfigPerfilController implements Initializable {
     private Button volverButton;
     @FXML
     private Button restoreButton;
-    private Image imagen;
-
-    private SimpleBooleanProperty fieldsModified = new SimpleBooleanProperty(false);
     @FXML
     private Button cambiarImagenButton;
     @FXML
     private Circle circleImage;
+
+    private Image imagen;
+    private SimpleBooleanProperty fieldsModified = new SimpleBooleanProperty(false);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -156,6 +155,8 @@ public class ConfigPerfilController implements Initializable {
         Alert success = AlertUtils.createAlert(Alert.AlertType.INFORMATION, "Los cambios se han guardado correctamente");
         success.showAndWait();
 
+        fieldsModified.set(false);
+
     }
 
     private void setFields() {
@@ -179,19 +180,15 @@ public class ConfigPerfilController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Abrir fichero");
         fileChooser.getExtensionFilters().addAll(
-        new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(
-        ((Node)event.getSource()).getScene().getWindow());
+        new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(((Node)event.getSource()).getScene().getWindow());
         if (selectedFile != null) {
             try {
-                Image img = new Image(selectedFile.toURI().toURL().toExternalForm(),150,150,false,true);
-                imagen = img;
+                fieldsModified.set(true);
+                imagen = new Image(selectedFile.toURI().toURL().toExternalForm(),150,150,false,true);
                 circleImage.setFill(new ImagePattern(imagen));
             } catch (MalformedURLException ex) {
-                Alert dialog = new Alert(Alert.AlertType.ERROR);
-                dialog.setTitle("GreenBall Informa");
-                dialog.setHeaderText("Error al cargar la imagen");
-                dialog.showAndWait();
+                AlertUtils.createAlert(Alert.AlertType.ERROR, "Error al cargar la imagen.");
             }
             
         }

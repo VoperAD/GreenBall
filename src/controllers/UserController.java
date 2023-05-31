@@ -30,7 +30,10 @@ public class UserController implements Initializable {
             GreenBallApp.reloadScene(Scenes.MIS_RESERVAS);
             GreenBallApp.setRoot(Scenes.MIS_RESERVAS);
         });
-        reservarButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION));
+        reservarButton.setOnAction(event -> {
+            GreenBallApp.reloadScene(Scenes.HORARIOS_CON_SESION);
+            GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION);
+        });
         salirButton.setOnAction(this::onSalir);
     }
 

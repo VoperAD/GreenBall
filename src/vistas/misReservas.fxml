@@ -58,7 +58,7 @@
       </HBox>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
@@ -68,15 +68,23 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="anularButton" mnemonicParsing="false" onAction="#onAnularReserva" text="Anular" />
+            <Button fx:id="anularButton" mnemonicParsing="false" onAction="#onAnularReserva" prefWidth="99.0" text="Anular">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#onAnularTodas" text="Anular Todas">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
    <center>
       <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="250.0" prefWidth="400.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="dayColumn" prefWidth="122.0" text="Día de la reserva" />
-          <TableColumn fx:id="startTimeColumn" prefWidth="64.0" text="Inicio" />
+          <TableColumn fx:id="dayColumn" prefWidth="126.67642974853516" text="Día de la reserva" />
+          <TableColumn fx:id="startTimeColumn" prefWidth="55.3236083984375" text="Inicio" />
             <TableColumn fx:id="endTimeColumn" prefWidth="75.0" text="Fin" />
             <TableColumn fx:id="pistaColumn" prefWidth="75.0" text="Pista" />
             <TableColumn fx:id="isPaidColumn" prefWidth="61.0" text="Pagada" />
@@ -84,6 +92,9 @@
          <BorderPane.margin>
             <Insets bottom="25.0" right="25.0" />
          </BorderPane.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </center>
 </BorderPane>
