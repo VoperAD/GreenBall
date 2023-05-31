@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/logincss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <center>
-      <AnchorPane prefHeight="600.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="650.0">
          <children>
             <VBox alignment="TOP_CENTER" minWidth="300.0" prefHeight="600.0" prefWidth="650.0">
                <children>
@@ -28,7 +16,7 @@
                         <Insets right="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
-                        <Button fx:id="volverButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#volverAction" styleClass="back-button" stylesheets="@../estilos/logincss.css" text="Volver">
+                        <Button fx:id="volverButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#volverAction" styleClass="back-button" stylesheets="@../estilos/login.css" text="Volver">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -66,11 +54,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label styleClass="labels" stylesheets="@../estilos/logincss.css" text="Nickname:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label styleClass="labels" stylesheets="@../estilos/logincss.css" text="Contraseña:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="nickText" centerShape="false" styleClass="fields" stylesheets="@../estilos/logincss.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <PasswordField fx:id="passwordField" styleClass="fields" stylesheets="@../estilos/logincss.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onLogin" prefHeight="30.0" prefWidth="150.0" styleClass="login-button" stylesheets="@../estilos/logincss.css" text="LOGIN" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label styleClass="labels" stylesheets="@../estilos/login.css" text="Nickname:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label styleClass="labels" stylesheets="@../estilos/login.css" text="Contraseña:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="nickText" centerShape="false" styleClass="fields" stylesheets="@../estilos/login.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="passwordField" styleClass="fields" stylesheets="@../estilos/login.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onLogin" prefHeight="30.0" prefWidth="150.0" styleClass="login-button" stylesheets="@../estilos/login.css" text="LOGIN" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="70.0" prefWidth="400.0">
@@ -84,6 +72,6 @@
       </AnchorPane>
    </center>
    <left>
-      <Pane prefHeight="600.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/logincss.css" BorderPane.alignment="CENTER_LEFT" />
+      <Pane prefHeight="600.0" prefWidth="250.0" styleClass="pane" stylesheets="@../estilos/login.css" BorderPane.alignment="CENTER_LEFT" />
    </left>
 </BorderPane>

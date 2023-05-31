@@ -1,8 +1,11 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafxmlapplication.GreenBallApp;
+import javafxmlapplication.Scenes;
 
 import java.net.URL;
 import java.util.Optional;
@@ -13,8 +16,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafxmlapplication.GreenBallApp;
-import javafxmlapplication.Scenes;
 
 public class UserController implements Initializable {
 

@@ -14,9 +14,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafxmlapplication.GreenBallApp;
 import javafxmlapplication.Scenes;
 import model.Booking;
+import model.Club;
 import model.ClubDAOException;
 import model.Member;
 import utils.AlertUtils;
@@ -29,8 +32,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
 public class MisReservasController implements Initializable {
 
@@ -72,8 +73,8 @@ public class MisReservasController implements Initializable {
         // Configuración de la visualización de los bookings
         List<Booking> userBookingsOrdered = GreenBallApp.getClub().getUserBookings(user.getNickName()).stream()
                 .sorted(Booking::compareTo)
-                .filter(booking -> !booking.getMadeForDay().isBefore(LocalDate.now()))
-                .filter(booking -> LocalTime.now().isBefore(booking.getFromTime().plusMinutes(GreenBallApp.getClub().getBookingDuration())))
+                .filter(b -> !b.getMadeForDay().isBefore(LocalDate.now()))
+                .filter(b -> !b.getMadeForDay().isEqual(LocalDate.now()) || !LocalTime.now().isAfter(b.getFromTime().plusMinutes(GreenBallApp.getClub().getBookingDuration())))
                 .collect(Collectors.toList());
 
         List<Booking> firstTen = userBookingsOrdered.size() > 10 ? userBookingsOrdered.subList(0, 10) : userBookingsOrdered;
@@ -138,6 +139,40 @@ public class MisReservasController implements Initializable {
 
     }
 
+    @FXML
+    private void onAnularTodas(ActionEvent event) throws ClubDAOException {
+        Member user = GreenBallApp.getUser();
+        Club club = GreenBallApp.getClub();
+
+        List<Booking> validBookings = club.getUserBookings(user.getNickName()).stream()
+                .filter(booking -> LocalDate.now().until(booking.getMadeForDay()).getDays() >= 1)
+                .collect(Collectors.toList());
+
+        if (validBookings.isEmpty()) {
+            AlertUtils.createAlert(Alert.AlertType.ERROR, "No existen reservas que se puedan cancelar!").showAndWait();
+            return;
+        }
+
+        Alert alert = AlertUtils.createAlert(Alert.AlertType.CONFIRMATION,
+                "Estás seguro de que quieres cancelar todas tus reservas?",
+                "Se cancelarán todas las reservas que no estén dentro de las próximas 24 horas! " +
+                        "Atención: esta es una acción irreversible!");
+
+        ButtonType si = new ButtonType("Sí");
+        ButtonType no = new ButtonType("No");
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(si, no);
+
+        Optional<ButtonType> buttonType = alert.showAndWait();
+        if (buttonType.isPresent() && buttonType.get() == si) {
+            for (Booking validBooking : validBookings) {
+                bookings.remove(validBooking);
+                club.removeBooking(validBooking);
+            }
+        }
+
+    }
+
     private void initTableColumns() {
         // Valores para cada columna
         dayColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getMadeForDay().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
@@ -146,10 +181,6 @@ public class MisReservasController implements Initializable {
         pistaColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getCourt().getName()));
         isPaidColumn.setCellValueFactory(booking -> new SimpleBooleanProperty(booking.getValue().getPaid()));
         isPaidColumn.setCellFactory(c -> new PaidCell());
-    }
-
-    @FXML
-    private void onAnularTodas(ActionEvent event) {
     }
 
     private static class PaidCell extends TableCell<Booking, Boolean> {

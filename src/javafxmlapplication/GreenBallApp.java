@@ -1,12 +1,5 @@
 package javafxmlapplication;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +9,10 @@ import javafx.stage.Stage;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GreenBallApp extends Application {
 

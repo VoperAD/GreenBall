@@ -1,0 +1,51 @@
+.root{
+    -fx-background-color: #ffffff;
+}
+
+.pane {
+    -fx-background-color: linear-gradient(to bottom right, #5DA62B, #43c0d9);
+}
+
+.login-button{
+    -fx-font-size: 16px; 
+    -fx-text-fill: #5DA62B;
+    -fx-font-weight: bold;
+    -fx-background-color: #eeeeee;
+    -fx-background-radius: 1;
+        
+}
+-login-button:hover{
+    -fx-background-color: #00cccc;
+}
+
+.back-button{
+    -fx-background-color: #ffffff;
+        
+}
+
+.labels{
+    -fx-font-size: 12px;
+    /*-fx-font-weight: bold;*/
+}
+
+.fields{
+    -fx-background-radius: 1;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dddddd;
+}
+.fields:hover{
+    -fx-border-color:black;
+}
+.text-field:focused{
+    -fx-border-color:#00cc33;
+}
+
+.cabecera{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.title{
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}

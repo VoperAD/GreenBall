@@ -1,4 +1,3 @@
-
 package controllers;
 
 import javafx.beans.binding.Bindings;
@@ -8,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 import javafxmlapplication.GreenBallApp;
 import javafxmlapplication.Scenes;
@@ -24,14 +24,6 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import controllers.MisReservasController;
-import javafx.fxml.FXMLLoader;
-
-/**
- * FXML Controller class
- *
- * @author Fran
- */
 public class HorarioSesionController implements Initializable {
 
     @FXML
@@ -101,7 +93,7 @@ public class HorarioSesionController implements Initializable {
 
         this.setCourtsName();
         this.initReservaLabelsBindings();
-        this.initDispBindingsAndListeners();
+        this.initDispBindings();
         this.initRadioButtonsBindings();
 
         // Deshabilitamos la selección de días anteriores
@@ -131,6 +123,7 @@ public class HorarioSesionController implements Initializable {
 
         ArrayList<Booking> bookings = GreenBallApp.getClub().getBookings();
 
+        // List view listener
         timeTable.getSelectionModel().selectedItemProperty().addListener((obs, old, newValue) -> {
             LocalDate selectedDateValue = datePicker.getValue();
             List<Booking> currentBookings = bookings.stream()
@@ -154,13 +147,38 @@ public class HorarioSesionController implements Initializable {
             }
         });
 
-        timeTable.getSelectionModel().select(0);
-
         datePicker.valueProperty().addListener((obs, old, newValue) -> {
+            timeTable.getItems().clear();
+            timeTable.getItems().addAll(hours);
+
+//            timeTable.setItems(datos);
             int ret = timeTable.getSelectionModel().getSelectedIndex();
-            timeTable.getSelectionModel().select(0);
+            timeTable.getSelectionModel().select(ret + 1 >= datos.size() ? 0 : datos.size() - 1);
             timeTable.getSelectionModel().select(ret);
         });
+
+        timeTable.setCellFactory(localTimeListView -> new ListCell<>() {
+            @Override
+            protected void updateItem(LocalTime localTime, boolean b) {
+                super.updateItem(localTime, b);
+                if (b || localTime == null) {
+                    setDisable(false);
+                    setText("");
+                    setStyle("");
+                } else {
+                    if (localTime.isBefore(LocalTime.now()) && datePicker.getValue().isEqual(LocalDate.now())) {
+                        setDisable(true);
+                        setStyle("-fx-background-color: #dddddd;");
+                    } else {
+                        setDisable(false);
+                        setStyle("");
+                    }
+                    setText(localTime.toString());
+                }
+            }
+        });
+
+        timeTable.getSelectionModel().select(null);
     }    
 
     @FXML
@@ -172,7 +190,11 @@ public class HorarioSesionController implements Initializable {
     private void onReservar(ActionEvent event) throws ClubDAOException {
         LocalTime time = timeTable.getSelectionModel().getSelectedItem();
         LocalDate day = datePicker.valueProperty().get();
-        if (time == null) return;
+
+        if (time == null) {
+            // Enviar un alerta de que se tiene que seleccionar una hora
+            return;
+        }
 
         Toggle selectedToggle = pistasToggleGroup.getSelectedToggle();
         if (selectedToggle == null) {
@@ -221,7 +243,7 @@ public class HorarioSesionController implements Initializable {
 
         GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION);
         int ret = timeTable.getSelectionModel().getSelectedIndex();
-        timeTable.getSelectionModel().select(0);
+        timeTable.getSelectionModel().select(ret + 1 > datos.size() ? 0 : datos.size() - 1);
         timeTable.getSelectionModel().select(ret);
     }
 
@@ -242,7 +264,6 @@ public class HorarioSesionController implements Initializable {
 
         return false;
     }
-
 
     private void setCourtsName() {
         List<Court> courts = GreenBallApp.getClub().getCourts();
@@ -267,16 +288,14 @@ public class HorarioSesionController implements Initializable {
         }
     }
 
-    private void initDispBindingsAndListeners() {
+    private void initDispBindings() {
         for (Map.Entry<Label, Label> entry: dispReservaMap.entrySet()) {
             Label reserva = entry.getKey();
             Label disp = entry.getValue();
-            disp.visibleProperty().bind(reserva.textProperty().isEmpty());
-            reserva.textProperty().addListener((obs, old, newValue) -> {
-                if (newValue.isBlank()) {
-                    disp.setText("Disponible");
-                }
-            });
+            disp.visibleProperty().bind(Bindings.and(
+                    reserva.textProperty().isEmpty(),
+                    Bindings.isNull(timeTable.getSelectionModel().selectedItemProperty()).not()
+            ));
         }
     }
 
@@ -288,7 +307,10 @@ public class HorarioSesionController implements Initializable {
         buttons.put(pistaCuatroButton, reservaCuatro);
         buttons.put(pistaCincoButton, reservaCinco);
         buttons.put(pistaSeisButton, reservaSeis);
-        buttons.forEach((radioButton, label) -> radioButton.disableProperty().bind(label.textProperty().isEmpty().not()));
+        buttons.forEach((radioButton, label) -> radioButton.disableProperty().bind(Bindings.or(
+                        label.textProperty().isEmpty().not(),
+                        Bindings.isNull(timeTable.getSelectionModel().selectedItemProperty())))
+        );
     }
 
 }
