@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -68,19 +69,29 @@ public class MisReservasController implements Initializable {
         List<Booking> userBookingsOrdered = GreenBallApp.getClub().getUserBookings(user.getNickName()).stream()
                 .sorted(Booking::compareTo)
                 .filter(booking -> !booking.getMadeForDay().isBefore(LocalDate.now()))
-                .filter(booking -> !LocalTime.now().isAfter(booking.getFromTime().plusHours(GreenBallApp.getClub().getBookingDuration())))
+                .filter(booking -> LocalTime.now().isBefore(booking.getFromTime().plusMinutes(GreenBallApp.getClub().getBookingDuration())))
                 .collect(Collectors.toList());
 
+        List<Booking> firstTen = userBookingsOrdered.size() > 10 ? userBookingsOrdered.subList(0, 10) : userBookingsOrdered;
+        bookings = FXCollections.observableArrayList(firstTen);
+
         if (userBookingsOrdered.size() >= 10) {
-            bookings = FXCollections.observableArrayList(userBookingsOrdered.subList(0, 10));
             userBookingsOrdered.subList(0, 10).clear();
         } else {
-            bookings = FXCollections.observableArrayList(userBookingsOrdered);
             userBookingsOrdered.clear();
         }
 
         bookings.addListener((ListChangeListener<? super Booking>) change -> {
-            if (!userBookingsOrdered.isEmpty()) bookings.add(userBookingsOrdered.get(0));
+            while (change.next()) {
+                if (!change.wasRemoved()) return;
+                Platform.runLater(() -> {
+                    if (!userBookingsOrdered.isEmpty()) {
+                        Booking booking = userBookingsOrdered.get(0);
+                        bookings.add(booking);
+                        userBookingsOrdered.remove(booking);
+                    };
+                });
+            }
         });
 
         tableView.setItems(bookings);
