@@ -1,0 +1,39 @@
+.root {
+    -fx-background-image: url("../images/banner-with-abstract-background-with-green-paper-cutout-waves.jpg");
+    -fx-background-repeat:no-repeat;
+    -fx-background-position:center;
+    -fx-background-size:100% 100%;
+
+    -fx-view-order: 3;
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-border-color: darkgreen;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-view-order: 1;
+}
+
+.button:hover {
+    -fx-background-color: darkgreen;
+}
+#userBar {
+    -fx-background-color: linear-gradient(to bottom right, #0c570d, #479e49);
+    -fx-background-radius: 30;
+    -fx-border-color: darkgreen;
+    -fx-border-radius: 30;
+}
+
+#volverButton {
+    -fx-alignment: top-right;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+}
+
+#volverButton:hover {
+    -fx-background-color: darkgreen;
+}
+
+
+

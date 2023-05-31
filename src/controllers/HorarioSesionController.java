@@ -1,4 +1,3 @@
-
 package controllers;
 
 import javafx.beans.binding.Bindings;
@@ -24,14 +23,6 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import controllers.MisReservasController;
-import javafx.fxml.FXMLLoader;
-
-/**
- * FXML Controller class
- *
- * @author Fran
- */
 public class HorarioSesionController implements Initializable {
 
     @FXML
@@ -101,7 +92,7 @@ public class HorarioSesionController implements Initializable {
 
         this.setCourtsName();
         this.initReservaLabelsBindings();
-        this.initDispBindingsAndListeners();
+        this.initDispBindings();
         this.initRadioButtonsBindings();
 
         // Deshabilitamos la selección de días anteriores
@@ -158,7 +149,7 @@ public class HorarioSesionController implements Initializable {
 
         datePicker.valueProperty().addListener((obs, old, newValue) -> {
             int ret = timeTable.getSelectionModel().getSelectedIndex();
-            timeTable.getSelectionModel().select(0);
+            timeTable.getSelectionModel().select(ret + 1 >= datos.size() ? 0 : datos.size() - 1);
             timeTable.getSelectionModel().select(ret);
         });
     }    
@@ -216,7 +207,7 @@ public class HorarioSesionController implements Initializable {
 
         GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION);
         int ret = timeTable.getSelectionModel().getSelectedIndex();
-        timeTable.getSelectionModel().select(0);
+        timeTable.getSelectionModel().select(ret + 1 > datos.size() ? 0 : datos.size() - 1);
         timeTable.getSelectionModel().select(ret);
     }
 
@@ -262,16 +253,11 @@ public class HorarioSesionController implements Initializable {
         }
     }
 
-    private void initDispBindingsAndListeners() {
+    private void initDispBindings() {
         for (Map.Entry<Label, Label> entry: dispReservaMap.entrySet()) {
             Label reserva = entry.getKey();
             Label disp = entry.getValue();
             disp.visibleProperty().bind(reserva.textProperty().isEmpty());
-            reserva.textProperty().addListener((obs, old, newValue) -> {
-                if (newValue.isBlank()) {
-                    disp.setText("Disponible");
-                }
-            });
         }
     }
 

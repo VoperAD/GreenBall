@@ -1,10 +1,5 @@
 package controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +8,12 @@ import javafxmlapplication.GreenBallApp;
 import javafxmlapplication.Scenes;
 import model.Club;
 import model.ClubDAOException;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InicioController implements Initializable {
 
