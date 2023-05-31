@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/greenball%20título%20mix%20xd%201.1.png" />
+                  <Image url="@../images/greenball1.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -23,7 +23,7 @@
             </ImageView>
             <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#inicioSesionAction" prefHeight="55.0" prefWidth="230.0" text="Iniciar sesión" textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font size="15.0" />
                </font>
             </Button>
             <Label alignment="CENTER" text="¿Aún no te has registrado?" textFill="WHITE">
@@ -36,7 +36,10 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="horariosButton" mnemonicParsing="false" onAction="#verHorarioAction" prefHeight="40.0" prefWidth="230.0" text="Ver Horarios" textFill="WHITE" />
+            <Button fx:id="horariosButton" mnemonicParsing="false" onAction="#verHorarioAction" prefHeight="40.0" prefWidth="230.0" text="Ver Horarios" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
          </children>
       </VBox>
    </center>

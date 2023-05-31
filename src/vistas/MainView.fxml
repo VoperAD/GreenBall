@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+
 <BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/MainViewcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <top>
       <GridPane styleClass="grid_menu_bar" stylesheets="@../estilos/MainViewcss.css" BorderPane.alignment="CENTER">
@@ -41,7 +51,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/greenball%20título%20verde%201.png" />
+                        <Image url="@../images/greenball2.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="10.0" />

@@ -17,3 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: green;
     -fx-font-weight: bold;
 }
+.buttons:hover{
+    -fx-background-color:#00cc99;
+    -fx-text-fill: white;
+}
