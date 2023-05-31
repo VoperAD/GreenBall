@@ -4,6 +4,7 @@
  */
 package controllers;
 
+import java.io.File;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -19,12 +20,18 @@ import model.Member;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class RegistroController implements Initializable {
 
@@ -75,6 +82,10 @@ public class RegistroController implements Initializable {
     private final SimpleBooleanProperty okProperty = new SimpleBooleanProperty(true);
 
     private Club club = GreenBallApp.getClub();
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private Button cambiarImagenButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -303,8 +314,9 @@ public class RegistroController implements Initializable {
                 svc = 0;
             }
             
+            Image img = imageView.getImage();
             
-            Member result = club.registerMember(name, surname, telephon, login, password, creditCard, svc, null);
+            Member result = club.registerMember(name, surname, telephon, login, password, creditCard, svc, img);
             
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("GreenBall Informa");
@@ -330,13 +342,8 @@ public class RegistroController implements Initializable {
                 e.printStackTrace();
             }
         }
-//        nombreText.clear();
-//        apellidosText.setText("");
-//        telText.setText("");
-//        nickText.setText("");
-//        contText.setText("");
-//        tarjetaText.setText("");
-//        ccvText.setText("");
+        Image img = new Image("/images/userIcon.png",150,150,false,true);
+        imageView.setImage(img);
     }
 
     @FXML
@@ -344,6 +351,29 @@ public class RegistroController implements Initializable {
         if(ccvText.getText().length()!=3 ){
                 ccvText.setStyle("-fx-text-fill: red");
             }
+    }
+
+    @FXML
+    private void cambiarImagen(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Abrir fichero");
+        fileChooser.getExtensionFilters().addAll(
+        new ExtensionFilter("Imágenes", "*.png", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(
+        ((Node)event.getSource()).getScene().getWindow());
+        if (selectedFile != null) {
+            try {
+                Image img = new Image(selectedFile.toURI().toURL().toExternalForm(),150,150,false,true);
+                imageView.setImage(img);
+            } catch (MalformedURLException ex) {
+                Alert dialog = new Alert(Alert.AlertType.ERROR);
+                dialog.setTitle("GreenBall Informa");
+                dialog.setHeaderText("Error al cargar la imagen");
+                dialog.showAndWait();
+            }
+            
+        }
+        
     }
     
 }

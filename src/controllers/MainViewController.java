@@ -67,7 +67,7 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+    
     ArrayList<String> hours = new ArrayList<String>();
     hours.add("09:00");hours.add("10:00");hours.add("11:00");
     hours.add("12:00");hours.add("13:00");hours.add("14:00");

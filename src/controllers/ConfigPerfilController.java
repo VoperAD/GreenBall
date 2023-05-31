@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,9 @@ import utils.AlertUtils;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.BiConsumer;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 
 public class ConfigPerfilController implements Initializable {
 
@@ -46,6 +51,8 @@ public class ConfigPerfilController implements Initializable {
     private ImageView imagen;
 
     private SimpleBooleanProperty fieldsModified = new SimpleBooleanProperty(false);
+    @FXML
+    private Button cambiarImagenButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -160,6 +167,28 @@ public class ConfigPerfilController implements Initializable {
         tarjetaField.setText(user.getCreditCard());
         passwordField.setText(user.getPassword());
         cvvField.setText(user.getSvc() != 0 ? String.valueOf(user.getSvc()) : "");
+    }
+
+    @FXML
+    private void cambiarImagen(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Abrir fichero");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(
+        ((Node)event.getSource()).getScene().getWindow());
+        if (selectedFile != null) {
+            try {
+                Image img = new Image(selectedFile.toURI().toURL().toExternalForm(),150,150,false,true);
+                imagen.setImage(img);
+            } catch (MalformedURLException ex) {
+                Alert dialog = new Alert(Alert.AlertType.ERROR);
+                dialog.setTitle("GreenBall Informa");
+                dialog.setHeaderText("Error al cargar la imagen");
+                dialog.showAndWait();
+            }
+            
+        }
     }
 
 }
