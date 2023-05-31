@@ -45,6 +45,7 @@ public class GreenBallApp extends Application {
 
         mainScene = new Scene(ROOTS.get(Scenes.INICIO));
         stage.getIcons().add(new Image("/images/logo.png"));
+        stage.setMinWidth(950); stage.setMinHeight(600);
         stage.setScene(mainScene);
         stage.setTitle("GreenBall");
         stage.show();

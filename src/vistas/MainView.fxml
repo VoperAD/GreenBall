@@ -82,25 +82,25 @@
       </VBox>
    </left>
    <center>
-      <GridPane hgap="15.0" prefHeight="469.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="15.0" minHeight="450.0" prefHeight="469.0" prefWidth="650.0" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="210.0" prefWidth="210.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="210.0" prefWidth="210.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="210.0" prefWidth="210.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <VBox alignment="CENTER" prefHeight="123.0" prefWidth="204.0" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button mnemonicParsing="false" styleClass="pistas" stylesheets="@../estilos/MainViewcss.css">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -122,7 +122,7 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button mnemonicParsing="false" styleClass="pistas" stylesheets="@../estilos/MainViewcss.css">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -144,7 +144,7 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button mnemonicParsing="false" styleClass="pistas" stylesheets="@../estilos/MainViewcss.css">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -166,7 +166,7 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button mnemonicParsing="false" styleClass="pistas" stylesheets="@../estilos/MainViewcss.css">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -188,7 +188,7 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button mnemonicParsing="false" styleClass="pistas" stylesheets="@../estilos/MainViewcss.css">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -210,7 +210,7 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button mnemonicParsing="false" styleClass="pistas" stylesheets="@../estilos/MainViewcss.css">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true">
                            <image>
