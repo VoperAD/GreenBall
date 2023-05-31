@@ -14,6 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafxmlapplication.GreenBallApp;
 import javafxmlapplication.Scenes;
 import model.Booking;
@@ -62,6 +65,8 @@ public class MainViewController implements Initializable {
     private Label lab5res;
     @FXML
     private Label lab6res;
+    @FXML
+    private Circle circleImage;
     /**
      * Initializes the controller class.
      */
@@ -117,6 +122,7 @@ public class MainViewController implements Initializable {
             }
         });
         timeTable.getSelectionModel().select(0);
+        circleImage.setFill(new ImagePattern(new Image("/images/userIcon.png",150,150,false,true)));
     }    
 
     @FXML

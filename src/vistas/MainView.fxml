@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/MainViewcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
@@ -31,11 +32,7 @@
                <children>
                   <Button contentDisplay="RIGHT" graphicTextGap="10.0" maxHeight="100.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #ededed;" text="Iniciar Sesión">
                      <graphic>
-                        <ImageView fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/userIcon.png" />
-                           </image>
-                        </ImageView>
+                        <Circle fx:id="circleImage" fill="WHITE" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
                      </graphic>
                   </Button>
                </children>
