@@ -15,4 +15,8 @@ public class AlertUtils {
         return createAlert(type, headerText, "");
     }
 
+    public static Alert applyStyle(Alert alerta) {
+        return null;
+    }
+
 }

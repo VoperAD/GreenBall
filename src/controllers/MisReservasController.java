@@ -123,9 +123,7 @@ public class MisReservasController implements Initializable {
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
             DialogPane dialogPane = alert.getDialogPane();
-            dialogPane.getStylesheets().add(
-            getClass().getResource("/estilos/global-style.css").toExternalForm());
-            //Asigna la clase .myAlert al contenedor principal del diálogo
+            dialogPane.getStylesheets().add(getClass().getResource("/estilos/global-style.css").toExternalForm());
             alert.getDialogPane().getStyleClass().add("info");
             alert.showAndWait();
             return;
