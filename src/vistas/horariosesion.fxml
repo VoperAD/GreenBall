@@ -61,15 +61,15 @@
          <children>
             <DatePicker fx:id="datePicker">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
             </DatePicker>
             <ListView fx:id="timeTable" prefHeight="500.0" prefWidth="200.0">
                <VBox.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="15.0" />
+                  <Insets bottom="25.0" left="30.0" right="30.0" top="15.0" />
                </VBox.margin>
             </ListView>
-            <Button fx:id="reservarButton" mnemonicParsing="false" onAction="#onReservar" style="-fx-background-radius: 30; -fx-background-color: #79c462; -fx-border-color: black; -fx-border-radius: 30; -fx-border-width: 1.3; -fx-cursor: hand;" text="Realizar Reserva">
+            <Button fx:id="reservarButton" mnemonicParsing="false" onAction="#onReservar" prefWidth="190.0" styleClass="reserve-button" stylesheets="@../estilos/MainViewcss.css" text="Realizar Reserva">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -107,6 +107,9 @@
                      <toggleGroup>
                         <ToggleGroup fx:id="pistasToggleGroup" />
                      </toggleGroup>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </RadioButton>
                   <Label fx:id="reservaUno" />
                </children>
@@ -123,6 +126,9 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </RadioButton>
                   <Label fx:id="reservaDos" />
                </children>
@@ -139,6 +145,9 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </RadioButton>
                   <Label fx:id="reservaTres" />
                </children>
@@ -155,6 +164,9 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </RadioButton>
                   <Label fx:id="reservaCuatro" />
                </children>
@@ -171,6 +183,9 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </RadioButton>
                   <Label fx:id="reservaCinco" />
                </children>
@@ -187,6 +202,9 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
                   </RadioButton>
                   <Label fx:id="reservaSeis" />
                </children>

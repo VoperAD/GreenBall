@@ -5,41 +5,28 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/inicio.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InicioController">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="142.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="228.0" valignment="CENTER" vgrow="SOMETIMES" />
-      <RowConstraints />
-      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <Pane opacity="0.61" prefHeight="200.0" prefWidth="200.0" styleClass="cuadro" GridPane.rowSpan="5">
-         <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </GridPane.margin>
-      </Pane>
-      <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#inicioSesionAction" prefHeight="70.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: white;" text="Iniciar sesión" textFill="WHITE" GridPane.halignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <GridPane.margin>
-            <Insets top="40.0" />
-         </GridPane.margin>
-      </Button>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+
+<BorderPane minHeight="400.0" minWidth="300.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@../estilos/inicio.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InicioController">
+   <center>
+      <VBox alignment="CENTER" fillWidth="false" minHeight="300.0" minWidth="300.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/greenball%20título%20mix%20xd%201.1.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="inicioSesionButton" mnemonicParsing="false" onAction="#inicioSesionAction" prefHeight="70.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: white;" text="Iniciar sesión" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
             <Label alignment="CENTER" text="¿Aún no te has registrado?" textFill="WHITE">
                <font>
                   <Font name="System Italic" size="16.0" />
@@ -53,13 +40,5 @@
             <Button fx:id="horariosButton" mnemonicParsing="false" onAction="#verHorarioAction" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: black; -fx-border-color: green;" text="Ver Horarios" textFill="WHITE" />
          </children>
       </VBox>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-         <image>
-            <Image url="@../images/greenball%20título%20mix%20xd%201.1.png" />
-         </image>
-         <GridPane.margin>
-            <Insets top="50.0" />
-         </GridPane.margin>
-      </ImageView>
-   </children>
-</GridPane>
+   </center>
+</BorderPane>

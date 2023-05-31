@@ -36,3 +36,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: #ffffff;
         
 }
+
+.pistas{
+    -fx-background-color: null;
+    -fx-border-color: #5DA62B;
+    -fx-border-radius: 5;
+}
+
+.reserve-button{
+    -fx-font-size: 16px; 
+    -fx-text-fill: #5DA62B;
+    -fx-font-weight: bold;
+    -fx-background-color: #efefef;
+    -fx-background-radius: 1;
+        
+}
