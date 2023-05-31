@@ -118,8 +118,6 @@ public class HorarioSesionController implements Initializable {
         };
 
         datePicker.setDayCellFactory(dayCellFactory);
-
-        //No modificable, solo se muestra el horario de hoy
         datePicker.setValue(LocalDate.now());
 
         // Inicializamos el contenido del listView
@@ -157,6 +155,12 @@ public class HorarioSesionController implements Initializable {
         });
 
         timeTable.getSelectionModel().select(0);
+
+        datePicker.valueProperty().addListener((obs, old, newValue) -> {
+            int ret = timeTable.getSelectionModel().getSelectedIndex();
+            timeTable.getSelectionModel().select(0);
+            timeTable.getSelectionModel().select(ret);
+        });
     }    
 
     @FXML
