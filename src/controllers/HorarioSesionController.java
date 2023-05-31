@@ -118,8 +118,6 @@ public class HorarioSesionController implements Initializable {
         };
 
         datePicker.setDayCellFactory(dayCellFactory);
-
-        //No modificable, solo se muestra el horario de hoy
         datePicker.setValue(LocalDate.now());
 
         // Inicializamos el contenido del listView
@@ -157,6 +155,12 @@ public class HorarioSesionController implements Initializable {
         });
 
         timeTable.getSelectionModel().select(0);
+
+        datePicker.valueProperty().addListener((obs, old, newValue) -> {
+            int ret = timeTable.getSelectionModel().getSelectedIndex();
+            timeTable.getSelectionModel().select(0);
+            timeTable.getSelectionModel().select(ret);
+        });
     }    
 
     @FXML
@@ -191,14 +195,13 @@ public class HorarioSesionController implements Initializable {
         horarios.add(time);
         Collections.sort(horarios);
 
-        if (hasSequenceOfThree(horarios, time)) {
+        if (hasSequenceOfThree(horarios)) {
             // No puedes reservar una pista por más de dos horas seguidas
             return;
         }
 
-
         // Registra la reserva
-        GreenBallApp.getClub().registerBooking(
+        Booking result = GreenBallApp.getClub().registerBooking(
                 LocalDateTime.now(),
                 day,
                 time,
@@ -206,26 +209,44 @@ public class HorarioSesionController implements Initializable {
                 GreenBallApp.getClub().getCourt(pista),
                 user
         );
+<<<<<<< HEAD
         
         int ret = timeTable.getSelectionModel().getSelectedIndex();
         timeTable.getSelectionModel().select(0);
         timeTable.getSelectionModel().select(ret);
         GreenBallApp.reloadScene(Scenes.MIS_RESERVAS);
+=======
+
+        if (result == null) {
+            throw new RuntimeException("Error al realizar la reserva Booking = null");
+        }
+
+        GreenBallApp.setRoot(Scenes.HORARIOS_CON_SESION);
+        int ret = timeTable.getSelectionModel().getSelectedIndex();
+        timeTable.getSelectionModel().select(0);
+        timeTable.getSelectionModel().select(ret);
+>>>>>>> d2c8c409bf292bfdfa601df789c0651890178e4e
 
     }
 
-    public boolean hasSequenceOfThree(List<LocalTime> times, LocalTime insertedTime) {
-        int index = times.indexOf(insertedTime);
-        if (index >= 0 && index + 2 < times.size()) {
-            LocalTime firstTime = times.get(index);
-            LocalTime secondTime = times.get(index + 1);
-            LocalTime thirdTime = times.get(index + 2);
+    public boolean hasSequenceOfThree(List<LocalTime> times) {
+        if (times.size() < 3) {
+            return false;
+        }
 
-            return secondTime.equals(firstTime.plusHours(1)) && thirdTime.equals(secondTime.plusHours(1));
+        for (int i = 0; i < times.size() - 2; i++) {
+            LocalTime current = times.get(i);
+            LocalTime next = times.get(i + 1);
+            LocalTime afterNext = times.get(i + 2);
+
+            if (current.plusHours(1).equals(next) && next.plusHours(1).equals(afterNext)) {
+                return true;
+            }
         }
 
         return false;
     }
+
 
     private void setCourtsName() {
         List<Court> courts = GreenBallApp.getClub().getCourts();

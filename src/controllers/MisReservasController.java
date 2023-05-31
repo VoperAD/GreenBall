@@ -50,37 +50,30 @@ public class MisReservasController implements Initializable {
     @FXML
     private TableColumn<Booking, Boolean> isPaidColumn;
 
-    private ObservableList<Booking> bookings;
+    private ObservableList<Booking> bookings = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        volverButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.USER));
-        anularButton.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
-
         Member user = GreenBallApp.getUser();
         if (user == null) {
             throw new IllegalStateException("No se ha establecido el user global correctamente");
         }
 
+        this.initTableColumns();
+        volverButton.setOnAction(event -> GreenBallApp.setRoot(Scenes.USER));
+        anularButton.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
         holaText.setText(holaText.getText() + user.getName() + "!");
 
-        // Valores para cada columna
-        dayColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getMadeForDay().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
-        startTimeColumn.setCellValueFactory(booking -> new SimpleObjectProperty<>(booking.getValue().getFromTime()));
-        endTimeColumn.setCellValueFactory(booking -> new SimpleObjectProperty<>(booking.getValue().getFromTime().plusHours(1L)));
-        pistaColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getCourt().getName()));
-        isPaidColumn.setCellValueFactory(booking -> new SimpleBooleanProperty(booking.getValue().getPaid()));
-        isPaidColumn.setCellFactory(c -> new PaidCell());
-
+        // Configuración de la visualización de los bookings
         List<Booking> userBookingsOrdered = GreenBallApp.getClub().getUserBookings(user.getNickName()).stream()
                 .sorted(Booking::compareTo)
                 .filter(booking -> !booking.getMadeForDay().isBefore(LocalDate.now()))
-                .filter(booking -> !LocalTime.now().isBefore(booking.getFromTime().plusHours(1)))
+                .filter(booking -> !LocalTime.now().isAfter(booking.getFromTime().plusHours(GreenBallApp.getClub().getBookingDuration())))
                 .collect(Collectors.toList());
 
         if (userBookingsOrdered.size() > 10) {
             bookings = FXCollections.observableArrayList(userBookingsOrdered.subList(0, 10));
-            userBookingsOrdered.removeAll(userBookingsOrdered.subList(0, 10));
+            userBookingsOrdered.subList(0, 10).clear();
         } else {
             bookings = FXCollections.observableArrayList(userBookingsOrdered);
             userBookingsOrdered.clear();
@@ -102,16 +95,9 @@ public class MisReservasController implements Initializable {
         LocalDate madeForDay = selectedItem.getMadeForDay();
         LocalDate now = LocalDate.now();
 
-        Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "No ha sido posible anular la reserva!", "No se puede cancelar una reserva con menos de 24 horas de antelación");
-
         // Mismo día, no se puede cancelar
-        if (now.isEqual(madeForDay)) {
-            alert.showAndWait();
-            return;
-        }
-
-        // Queda menos de 24 horas para la reserva
-        if (now.until(madeForDay).getDays() == 1 && LocalTime.now().isAfter(fromTime)) {
+        if (now.isEqual(madeForDay) || (now.until(madeForDay).getDays() == 1 && LocalTime.now().isAfter(fromTime))) {
+            Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "No ha sido posible anular la reserva!", "No se puede cancelar una reserva con menos de 24 horas de antelación");
             alert.showAndWait();
             return;
         }
@@ -133,6 +119,16 @@ public class MisReservasController implements Initializable {
             GreenBallApp.getClub().removeBooking(selectedItem);
         }
 
+    }
+
+    private void initTableColumns() {
+        // Valores para cada columna
+        dayColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getMadeForDay().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
+        startTimeColumn.setCellValueFactory(booking -> new SimpleObjectProperty<>(booking.getValue().getFromTime()));
+        endTimeColumn.setCellValueFactory(booking -> new SimpleObjectProperty<>(booking.getValue().getFromTime().plusHours(1L)));
+        pistaColumn.setCellValueFactory(booking -> new SimpleStringProperty(booking.getValue().getCourt().getName()));
+        isPaidColumn.setCellValueFactory(booking -> new SimpleBooleanProperty(booking.getValue().getPaid()));
+        isPaidColumn.setCellFactory(c -> new PaidCell());
     }
 
     private static class PaidCell extends TableCell<Booking, Boolean> {

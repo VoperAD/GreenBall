@@ -32,9 +32,10 @@ public class GreenBallApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+//        Application.setUserAgentStylesheet("/estilos/global-style.css");
 
+        // Cargamos las Scenes
         FXMLLoader loader;
-
         for (Scenes scene: Scenes.values()) {
             if (!scene.shouldLoadOnLaunch()) continue;
             loader = new FXMLLoader(getClass().getResource(scene.getFilePath()));
