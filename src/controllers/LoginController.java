@@ -16,6 +16,9 @@ import utils.AlertUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 
@@ -42,6 +45,13 @@ public class LoginController implements Initializable {
         // Nickname inexistente
         if (!club.existsLogin(nickname)) {
             Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "Error en el Login!", "El usuario introducido no existe!");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+            getClass().getResource("/estilos/global-style.css").toExternalForm());
+            //Asigna la clase .myAlert al contenedor principal del diálogo
+            alert.getDialogPane().getStyleClass().add("info");
             alert.showAndWait();
             return;
         }
@@ -51,16 +61,22 @@ public class LoginController implements Initializable {
         // Contraseña errónea
         if (memberByCredentials == null) {
             Alert alert = AlertUtils.createAlert(Alert.AlertType.ERROR, "Error en el Login!", "La contraseña introducida es incorrecta!");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(
+            getClass().getResource("/estilos/global-style.css").toExternalForm());
+            //Asigna la clase .myAlert al contenedor principal del diálogo
+            alert.getDialogPane().getStyleClass().add("info");
             alert.showAndWait();
             return;
         }
 
         passwordField.clear();
         nickText.clear();
-
-        AlertUtils.createAlert(Alert.AlertType.INFORMATION, "Sesión iniciada con éxito!", "");
+        
         GreenBallApp.setUser(memberByCredentials);
-
+        
         GreenBallApp.reloadScene(Scenes.MIS_RESERVAS);
         GreenBallApp.reloadScene(Scenes.CONFIG_PERFIL);
         GreenBallApp.reloadScene(Scenes.HORARIOS_CON_SESION);

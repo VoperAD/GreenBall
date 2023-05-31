@@ -26,10 +26,12 @@ import java.util.function.BiConsumer;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class ConfigPerfilController implements Initializable {
 
@@ -103,6 +105,13 @@ public class ConfigPerfilController implements Initializable {
 
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setTitle("GreenBall informa");
+        Stage stage = (Stage) error.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+        DialogPane dialogPane = error.getDialogPane();
+        dialogPane.getStylesheets().add(
+        getClass().getResource("/estilos/global-style.css").toExternalForm());
+        //Asigna la clase .myAlert al contenedor principal del diálogo
+        error.getDialogPane().getStyleClass().add("info");
 
         String nombreFieldText = nombreField.getText();
         if (!nombreFieldText.matches("^[a-zA-Z ]+$") || nombreFieldText.isBlank()) {

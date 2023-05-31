@@ -34,6 +34,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class RegistroController implements Initializable {
 
@@ -325,6 +326,13 @@ public class RegistroController implements Initializable {
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("GreenBall Informa");
             dialog.setHeaderText("Usuario creado correctamente");
+            Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/logo.png")));
+            DialogPane dialogPane = dialog.getDialogPane();
+            dialogPane.getStylesheets().add(
+            getClass().getResource("/estilos/global-style.css").toExternalForm());
+            //Asigna la clase .myAlert al contenedor principal del diálogo
+            dialog.getDialogPane().getStyleClass().add("info");
             dialog.showAndWait();
             
             vaciarCampos();

@@ -197,6 +197,11 @@ public class HorarioSesionController implements Initializable {
 
         if (hasSequenceOfThree(horarios)) {
             // No puedes reservar una pista por más de dos horas seguidas
+            Alert dialog = new Alert(Alert.AlertType.ERROR);
+            dialog.setTitle("GreenBall Informa");
+            dialog.setHeaderText("Límite de reservas superado");
+            dialog.setContentText("No pudes reservar la misma pista por más de 3 horas consecutivas");
+            dialog.showAndWait();
             return;
         }
 

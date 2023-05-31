@@ -148,6 +148,10 @@ public class MisReservasController implements Initializable {
         isPaidColumn.setCellFactory(c -> new PaidCell());
     }
 
+    @FXML
+    private void onAnularTodas(ActionEvent event) {
+    }
+
     private static class PaidCell extends TableCell<Booking, Boolean> {
         private final ImageView view = new ImageView();
 

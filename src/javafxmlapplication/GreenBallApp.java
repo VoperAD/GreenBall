@@ -42,6 +42,7 @@ public class GreenBallApp extends Application {
             Parent parent = loader.load();
             ROOTS.put(scene, parent);
             CONTROLLERS.put(scene, loader.getController());
+            parent.getStylesheets().add(getClass().getResource("/estilos/global-style.css").toExternalForm());
         }
 
         mainScene = new Scene(ROOTS.get(Scenes.INICIO));

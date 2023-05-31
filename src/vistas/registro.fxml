@@ -103,7 +103,7 @@
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="180.0">
                            <children>
                               <PasswordField fx:id="contText" layoutX="1.0" prefWidth="180.0" />
-                              <TextField fx:id="contVisibleText" layoutX="1.0" prefWidth="180.0" />
+                              <TextField fx:id="contVisibleText" layoutX="1.0" prefWidth="180.0" stylesheets="@../estilos/global-style.css" />
                            </children>
                         </Pane>
                         <CheckBox fx:id="visibleCheck" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Ver">
